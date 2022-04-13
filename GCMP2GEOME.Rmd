@@ -1,0 +1,35 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Introduction
+
+This notebook documents the code used to translate the Global Coral Microbiome Project's collated metadata (provided by Jesse Zaneveld) into a format that GEOME can ingest. We are hoping to share the GCMP metadata on GEOME and for this to be a use-case to help improve GEOME's ability to store microbiome metadata.
+
+The metadata provided by Jesse are in `GCMP_EMP_map_r29.txt`. The template to which we want to write the data is in `Global Coral Microbiome Project.xlsx`
+
+# Setup
+
+```{r setup}
+library(tidyverse)
+library(lubridate)
+
+```
+
+# Importing the data
+
+```{r}
+
+df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = "Missing: Not collected", 
+              col_types = cols_only(
+                date = col_date(format = "mdy"),
+                pcrtubeno = "c"
+                
+              )) 
+events <- df %>% select(collection_id,
+                        reef_name)
+```
+
+
+
