@@ -1,11 +1,11 @@
 ---
-title: "R Notebook"
+title: "Crosswalking Global Coral Microbiome Data (GCMP) into the Genomic Observatories Metadatabase (GEOME"
 output: html_notebook
 ---
 
 # Introduction
 
-This notebook documents the code used to translate the Global Coral Microbiome Project's collated metadata (provided by Jesse Zaneveld) into a format that GEOME can ingest. We are hoping to share the GCMP metadata on GEOME and for this to be a use-case to help improve GEOME's ability to store microbiome metadata.
+This notebook documents the code used to translate the Global Coral Microbiome Project's (GCMP) collated metadata (provided by Jesse Zaneveld) into a format that GEOME can ingest. We are hoping to share the GCMP metadata on GEOME and for this to be a use-case to help improve GEOME's ability to store microbiome metadata.
 
 The metadata provided by Jesse are in `GCMP_EMP_map_r29.txt`. The template to which we want to write the data is in `Global Coral Microbiome Project.xlsx`
 
@@ -14,6 +14,7 @@ The metadata provided by Jesse are in `GCMP_EMP_map_r29.txt`. The template to wh
 ```{r setup}
 library(tidyverse)
 library(lubridate)
+library(xlsx)
 
 ```
 
@@ -21,15 +22,89 @@ library(lubridate)
 
 ```{r}
 
+y_or_n <- function(x){
+  x == "y"
+}
+
 df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = "Missing: Not collected", 
-              col_types = cols_only(
-                date = col_date(format = "mdy"),
-                pcrtubeno = "c"
-                
-              )) 
-events <- df %>% select(collection_id,
-                        reef_name)
+              col_types = cols(
+                date = col_date(format = "%d/%d/%y"),
+                pcrtubeno = "c",
+                depth = "n",
+                temperature = "n",
+                turf_contact_percent = "n",
+                n_macroalgal_contacts = "n",
+                oz_disease_mean = "n",
+                oz_disease_sd = "n"
+              )) %>% 
+          #this changes all columns that start with "binary" to logical (T/F) instead of y/n
+          mutate(across(starts_with("binary"), function(x){x == "y"}
+                        ))
+          # you may want to continue cleaning the data in this pipeline statement, 
+          # like changing other y/n columns to logical                    
+```
+
+# Split the data into GEOME tables
+
+Now you'll need to split the columns into the four tables that GEOME uses: events, samples, tissues, and diagnostics  
+
+You can follow what I specified in GCMP_EMP_map_r29_EDC.xlsx (green = events, blue = samples, yellow = tissues, orange = diagnostics)
+
+Still, some decisions need to be made about what gets included in GEOME or not. XXXXX means I think it 
+shouldn't be included, ???? means I don't know you should ask or find a darwinCore term, and then I made no decisions
+past family (column CU)
+
+```{r}
+events <- df %>% select(collection_id,date,reef_name, collection_time, latitude, longitude, substrate, depth)
+samples <- df %>% blahblahblahetc.
+
+
+
+
+```
+
+# Rename and convert
+
+Now you need to rename and/or convert any data into GEOME format
+
+```{r}
+events <- events %>% rename(eventID = collection_id,
+                            locationRemarks = reef_name,
+                            timeOfDay = collection_time,
+                            decimalLongitude = longitude,
+                            decimalLatitude = latitude,
+                            substratum = substrate,
+                            maximumDepthInMeters = depth) %>% mutate(collectionDay = day(date),
+                                                                     collectionMonth = month(date),
+                                                                     collectionYear = year(date)) %>%
+              select(-date)
+
+
+
+```
+
+# Deduplicate
+
+Here is where you'll make the data more efficient, into [First Normal Form](https://en.wikipedia.org/wiki/First_normal_form), 
+by removing duplicate entries in the events and samples tables.
+
+Currently consulting with John Deck about moving substratum and depth to the Sample table, rather than events...
+
+```{r}
+dim(events)
+events <- events %>% distinct()
+
+dim(events)
+
 ```
 
 
+# Validate
 
+You'll want to use dplyr left_join() here and some sort of diff function to see if you can exactly reconstruct the dataset from these de-duplicated tables
+
+
+
+# Write to Excel Template
+
+You'll want to use the `write.xlsx()` function in the xlsx package to write each table to the `Global Coral Microbiome Project.xlsx` GEOME template in the working directory.
