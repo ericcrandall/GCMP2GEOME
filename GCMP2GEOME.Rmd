@@ -39,7 +39,7 @@ df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = "Missing: Not collected",
               )) %>% 
           #this changes all columns that start with "binary" to logical (T/F) instead of y/n
           mutate(across(starts_with("binary"), function(x){x == "y"}
-                        ))
+                        )) 
           # you may want to continue cleaning the data in this pipeline statement, 
           # like changing other y/n columns to logical                    
 ```
@@ -98,6 +98,17 @@ dim(events)
 
 ```
 
+
+# Split into Expeditions
+
+There were 11 or 14 GCMP expeditions, and we need to split these concatenated data back into their constituent expeditions.
+
+```{r}
+E1 <- df %>% mutate(expedition = str_match(SampleID,"10895\\.(E\\d+)")[,2], .before = sample_name_backup) %>% 
+        filter(expedition == "E1")
+  
+
+```
 
 # Validate
 
