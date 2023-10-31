@@ -1,5 +1,5 @@
 ---
-title: "Crosswalking Global Coral Microbiome Data (GCMP) into the Genomic Observatories Metadatabase (GEOME"
+title: "Crosswalking Global Coral Microbiome Data (GCMP) into the Genomic Observatories Metadatabase (GEOME)"
 output: html_notebook
 ---
 
@@ -40,9 +40,12 @@ df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = "Missing: Not collected",
           #this changes all columns that start with "binary" to logical (T/F) instead of y/n
           mutate(across(starts_with("binary"), function(x){x == "y"}
                         )) 
-          # you may want to continue cleaning the data in this pipeline statement, 
+          # you may want to continue cleaning the data in this import pipeline statement, 
           # like changing other y/n columns to logical                    
 ```
+
+# Clean the Data
+
 
 # Split the data into GEOME tables
 
