@@ -26,7 +26,7 @@ y_or_n <- function(x){
   x == "y"
 }
 
-df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = "Missing: Not collected", 
+df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = c("","NA","na","Not Applicable"),
               col_types = cols(
                 date = col_date(format = "%d/%m/%y"),
                 pcrtubeno = "c",
@@ -37,9 +37,9 @@ df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = "Missing: Not collected",
                 oz_disease_mean = "n",
                 oz_disease_sd = "n"
               )) %>% 
-          #this changes all columns that start with "binary" to logical (T/F) instead of y/n
-          mutate(across(starts_with("binary"), function(x){x == "y"}
-                        )) 
+          #this optionally changes all columns that start with "binary" to logical (T/F) instead of y/n
+          #mutate(across(starts_with("binary"), function(x){x == "y"}
+          #              )) 
           # you may want to continue cleaning the data in this import pipeline statement, 
           # like changing other y/n columns to logical                    
 ```
