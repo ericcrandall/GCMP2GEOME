@@ -28,7 +28,7 @@ y_or_n <- function(x){
 
 df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = c("","NA","na","Not Applicable"),
               col_types = cols(
-                date = col_date(format = "%d/%m/%y"),
+                date = col_date(format = "%m/%d/%y"),
                 pcrtubeno = "c",
                 depth = "n",
                 temperature = "n",
