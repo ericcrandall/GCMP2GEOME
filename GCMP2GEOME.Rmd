@@ -59,7 +59,7 @@ past family (column CU)
 
 ```{r}
 events <- df %>% select(collection_id,date,reef_name, collection_time, latitude, longitude, substrate, depth)
-samples <- df %>% blahblahblahetc.
+samples <- df %>% blah.
 
 
 
