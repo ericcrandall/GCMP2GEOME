@@ -1769,14 +1769,24 @@ write the data is in
 <h1>Setup</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGx1YnJpZGF0ZSlcbmxpYnJhcnkoeGxzeClcblxuYGBgXG5gYGBcbmBgYCJ9 -->
-<pre class="r"><code>```r
-```r
-library(tidyverse)
-library(lubridate)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMiAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGdncGxvdDIgICAzLjQuNCAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMiAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxu4pyUIHB1cnJyICAgICAxLjAuMiAgICAg4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxu4pyWIGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbuKcliBkcGx5cjo6bGFnKCkgICAgbWFza3Mgc3RhdHM6OmxhZygpXG7ihLkgVXNlIHRoZSBcdTAwMWJdODs7aHR0cDovL2NvbmZsaWN0ZWQuci1saWIub3JnL1x1MDAwN2NvbmZsaWN0ZWQgcGFja2FnZVx1MDAxYl04OztcdTAwMDcgdG8gZm9yY2UgYWxsIGNvbmZsaWN0cyB0byBiZWNvbWUgZXJyb3JzXG4ifQ== -->
+<pre><code>── Attaching core tidyverse packages ────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     ── Conflicts ──────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShsdWJyaWRhdGUpXG5saWJyYXJ5KHhsc3gpXG5cbmBgYCJ9 -->
+<pre class="r"><code>library(lubridate)
 library(xlsx)
 </code></pre>
-<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1785,28 +1795,290 @@ library(xlsx)
 <h1>Importing the data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG55X29yX24gPC0gZnVuY3Rpb24oeCl7XG4gIHggPT0gXCJ5XCJcbn1cblxuZGYgPC0gcmVhZF90c3YoZmlsZSA9IFwiR0NNUF9FTVBfbWFwX3IyOS50eHRcIiwgbmEgPSBjKFwiXCIsXCJOQVwiLFwibmFcIixcIk5vdCBBcHBsaWNhYmxlXCIpLFxuICAgICAgICAgICAgICBjb2xfdHlwZXMgPSBjb2xzKFxuICAgICAgICAgICAgICAgIGRhdGUgPSBjb2xfZGF0ZShmb3JtYXQgPSBcIiVtLyVkLyV5XCIpLFxuICAgICAgICAgICAgICAgIGRlcHRoID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgdGVtcGVyYXR1cmUgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBzdXJmYWNlX3RlbXBlcmF0dXJlID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgY29sb255X2hlaWdodF9tID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgY29sb255X3dpZHRoMSA9IFwiblwiLFxuICAgICAgICAgICAgICAgIGNvbG9ueV93aWR0aDIgPSBcIm5cIlxuICAgICAgICAgICAgICApKSAlPiUgXG4gICAgICAgICAgI3RoaXMgb3B0aW9uYWxseSBjaGFuZ2VzIGFsbCBjb2x1bW5zIHRoYXQgc3RhcnQgd2l0aCBcImJpbmFyeVwiIHRvIGxvZ2ljYWwgKFQvRikgaW5zdGVhZCBvZiB5L25cbiAgICAgICAgICAjbXV0YXRlKGFjcm9zcyhzdGFydHNfd2l0aChcImJpbmFyeVwiKSwgZnVuY3Rpb24oeCl7eCA9PSBcInlcIn1cbiAgICAgICAgICAjICAgICAgICAgICAgICApKSBcbiAgICAgICAgICAjIHlvdSBtYXkgd2FudCB0byBjb250aW51ZSBjbGVhbmluZyB0aGUgZGF0YSBpbiB0aGlzIGltcG9ydCBwaXBlbGluZSBzdGF0ZW1lbnQsIFxuICAgICAgICAgICMgbGlrZSBjaGFuZ2luZyBvdGhlciB5L24gY29sdW1ucyB0byBsb2dpY2FsICAgICAgICAgICAgICAgICAgICBcbmBgYCJ9 -->
-<pre class="r"><code>
-y_or_n &lt;- function(x){
-  x == &quot;y&quot;
-}
-
-df &lt;- read_tsv(file = &quot;GCMP_EMP_map_r29.txt&quot;, na = c(&quot;&quot;,&quot;NA&quot;,&quot;na&quot;,&quot;Not Applicable&quot;),
-              col_types = cols(
-                date = col_date(format = &quot;%m/%d/%y&quot;),
-                depth = &quot;n&quot;,
-                temperature = &quot;n&quot;,
-                surface_temperature = &quot;n&quot;,
-                colony_height_m = &quot;n&quot;,
-                colony_width1 = &quot;n&quot;,
-                colony_width2 = &quot;n&quot;
-              )) %&gt;% 
-          #this optionally changes all columns that start with &quot;binary&quot; to logical (T/F) instead of y/n
-          #mutate(across(starts_with(&quot;binary&quot;), function(x){x == &quot;y&quot;}
-          #              )) 
-          # you may want to continue cleaning the data in this import pipeline statement, 
-          # like changing other y/n columns to logical                    </code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDaGVjayBjb2x1bW4gY2xhc3NcbnN1bW1hcnk9c3RyKGRmKVxuXG5gYGAifQ== -->
+<pre class="r"><code># Check column class
+summary=str(df)
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoic3BjX3RibF8gWzEsNDQwIMOXIDE3MV0gKFMzOiBzcGVjX3RibF9kZi90YmxfZGYvdGJsL2RhdGEuZnJhbWUpXG4gJCBTYW1wbGVJRCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiMTA4OTUuRTQuT3V0LkVudC5xdWFkLjEuMjAxNTAzMTIuTVwiIFwiMTA4OTUuRTQuT3V0LkFpcC5zcC4xLjIwMTUwMzEwLlRcIiBcIjEwODk1LkU0Lk91dC5BaXAuc3AuMi4yMDE1MDMxMC5UXCIgXCIxMDg5NS5FNC5PdXQuSGV0LmF1cm8uMS4yMDE1MDMxMi5NXCIgLi4uXG4gJCBzYW1wbGVfbmFtZV9iYWNrdXAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiRTQuT3V0LkVudC5xdWFkLjEuMjAxNTAzMTIuTVwiIFwiRTQuT3V0LkFpcC5zcC4xLjIwMTUwMzEwLlRcIiBcIkU0Lk91dC5BaXAuc3AuMi4yMDE1MDMxMC5UXCIgXCJFNC5PdXQuSGV0LmF1cm8uMS4yMDE1MDMxMi5NXCIgLi4uXG4gJCBCYXJjb2RlU2VxdWVuY2UgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiQUdUQUdUVFRDQ1RUXCIgXCJDQ1RBQ0NBVFRHVFRcIiBcIkNBVFRUQ0dDQUNUVFwiIFwiQUNBR1RUR1RBQ0dDXCIgLi4uXG4gJCBMaW5rZXJQcmltZXJTZXF1ZW5jZSAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiR1RHVEdDQ0FHQ01HQ0NHQ0dHVEFBXCIgXCJHVEdUR0NDQUdDTUdDQ0dDR0dUQUFcIiBcIkdUR1RHQ0NBR0NNR0NDR0NHR1RBQVwiIFwiR1RHVEdDQ0FHQ01HQ0NHQ0dHVEFBXCIgLi4uXG4gJCBydW5fbGFuZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiUnVuMiBMYW5lIDhcIiBcIlJ1bjIgTGFuZSA4XCIgXCJSdW4yIExhbmUgOFwiIFwiUnVuMiBMYW5lIDhcIiAuLi5cbiAkIHJ1bl9wcmVmaXggICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJHQ01QMl9MYW5lOF9TOF9MMDA4XCIgXCJHQ01QMl9MYW5lOF9TOF9MMDA4XCIgXCJHQ01QMl9MYW5lOF9TOF9MMDA4XCIgXCJHQ01QMl9MYW5lOF9TOF9MMDA4XCIgLi4uXG4gJCBzYW1wbGVfbmFtZV9tZiAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiRTQuT3V0LkVudC5xdWFkLjEuMjAxNTAzMTIuTVwiIFwiRTQuT3V0LkFpcC5zcC4xLjIwMTUwMzEwLlRcIiBcIkU0Lk91dC5BaXAuc3AuMi4yMDE1MDMxMC5UXCIgXCJFNC5PdXQuSGV0LmF1cm8uMS4yMDE1MDMxMi5NXCIgLi4uXG4gJCBwY3J0dWJlbm8gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogbnVtIFsxOjE0NDBdIDEwNDMgODgzIDg4NCAxMDIyIDEwNjEgLi4uXG4gJCBxaWl0YV9zdHVkeV9pZCAgICAgICAgICAgICAgICAgICAgICAgIDogbnVtIFsxOjE0NDBdIDEwODk1IDEwODk1IDEwODk1IDEwODk1IDEwODk1IC4uLlxuICQgc2FtcGxlX3R5cGVfRU1QICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcImNvcmFsXCIgXCJjb3JhbFwiIFwiY29yYWxcIiBcImNvcmFsXCIgLi4uXG4gJCBzYW1wbGVfbmFtZV9maXJzdF9kZW11bHRpcGxleGluZyAgICAgIDogY2hyIFsxOjE0NDBdIFwiMTA4OTUuRTQuT3V0LkVudC5xdWFkLjEuMjAxNTAzMTIuTVwiIFwiMTA4OTUuRTQuT3V0LkFpcC5zcC4xLjIwMTUwMzEwLlRcIiBcIjEwODk1LkU0Lk91dC5BaXAuc3AuMi4yMDE1MDMxMC5UXCIgXCIxMDg5NS5FNC5PdXQuSGV0LmF1cm8uMS4yMDE1MDMxMi5NXCIgLi4uXG4gJCBjb2xsZWN0aW9uX2lkICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiSW5uZXIgRnNhcl8yMDE1MDMxMlwiIFwiS0FVU1QgQnVveSAwMzQwXzIwMTUwMzEwXCIgXCJLQVVTVCBCdW95IDAzNDBfMjAxNTAzMTBcIiBcIklubmVyIEZzYXJfMjAxNTAzMTJcIiAuLi5cbiAkIGRhdGUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBEYXRlWzE6MTQ0MF0sIGZvcm1hdDogXCIyMDE1LTAzLTEyXCIgXCIyMDE1LTAzLTEwXCIgLi4uXG4gJCBjb25jYXRlbmF0ZWRfZGF0ZSAgICAgICAgICAgICAgICAgICAgIDogbnVtIFsxOjE0NDBdIDIwMTUwMzEyIDIwMTUwMzEwIDIwMTUwMzEwIDIwMTUwMzEyIDIwMTUwODIzIC4uLlxuICQgcmVlZl9uYW1lICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIklubmVyIEZzYXJcIiBcIktBVVNUIEJ1b3kgMDM0MFwiIFwiS0FVU1QgQnVveSAwMzQwXCIgXCJJbm5lciBGc2FyXCIgLi4uXG4gJCBjb2xsZWN0aW9uX3RpbWUgICAgICAgICAgICAgICAgICAgICAgIDogJ2htcycgbnVtIFsxOjE0NDBdIDA5OjUyOjAwIDEzOjQ1OjAwIDEzOjQ1OjAwIDEwOjEzOjAwIC4uLlxuICAuLi0gYXR0cigqLCBcInVuaXRzXCIpPSBjaHIgXCJzZWNzXCJcbiAkIGNvbGxlY3Rpb25fdGltZXN0YW1wICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCIzLzEyLzE1IDk6NTJcIiBcIjMvMTAvMTUgMTM6NDVcIiBcIjMvMTAvMTUgMTM6NDVcIiBcIjMvMTIvMTUgMTA6MTNcIiAuLi5cbiAkIGRhaWx5X3JlcGxpY2F0ZSAgICAgICAgICAgICAgICAgICAgICAgOiBudW0gWzE6MTQ0MF0gMSAxIDIgMSAxIDEgMSAxIDEgMSAuLi5cbiAkIGxhdGl0dWRlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBudW0gWzE6MTQ0MF0gMjIuMiAyMC4xIDIwLjEgMjIuMiAtMjEgLi4uXG4gJCBsb25naXR1ZGUgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogbnVtIFsxOjE0NDBdIDM5IDQwLjIgNDAuMiAzOSA1NS4yIC4uLlxuICQgc3Vic3RyYXRlICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcInJvY2tfcnViYmxlX3NlZGltZW50XCIgXCJtb29yaW5nX2xpbmVcIiBcIm1vb3JpbmdfbGluZVwiIFwicm9ja19zZWRpbWVudFwiIC4uLlxuICQgZGVwdGggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IG51bSBbMToxNDQwXSA0Ljg4IDcuNjIgNy42MiA0Ljg4IDE1LjU0IC4uLlxuICQgdGVtcGVyYXR1cmUgICAgICAgICAgICAgICAgICAgICAgICAgICA6IG51bSBbMToxNDQwXSAyNi43IDI3LjggMjcuOCAyNi43IDI0LjQgLi4uXG4gJCBzdXJmYWNlX3RlbXBlcmF0dXJlICAgICAgICAgICAgICAgICAgIDogbnVtIFsxOjE0NDBdIE5BIE5BIE5BIE5BIDI0LjQgLi4uXG4gJCBzYWxpbml0eSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiTWlzc2luZzogTm90IGNvbGxlY3RlZFwiIFwiTWlzc2luZzogTm90IGNvbGxlY3RlZFwiIFwiTWlzc2luZzogTm90IGNvbGxlY3RlZFwiIFwiTWlzc2luZzogTm90IGNvbGxlY3RlZFwiIC4uLlxuICQgb3h5Z2VuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiAuLi5cbiAkIHBob3Rvc3ludGhldGljYWxseV9hY3RpdmVfcmFkaWF0aW9uICAgOiBjaHIgWzE6MTQ0MF0gXCI2NDAwXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCIxMDUwMFwiIC4uLlxuICQgUEFSX21ldGhvZCAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIlBBUiBtZXRlciBwb2ludGVkIHVwd2FyZHMgbmVhciBjb3JhbFwiIFwiUEFSIG1ldGVyIHBvaW50ZWQgdXB3YXJkcyBuZWFyIGNvcmFsXCIgXCJQQVIgbWV0ZXIgcG9pbnRlZCB1cHdhcmRzIG5lYXIgY29yYWxcIiBcIlBBUiBtZXRlciBwb2ludGVkIHVwd2FyZHMgbmVhciBjb3JhbFwiIC4uLlxuICQgZG5hX2V4dHJhY3RlZCAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcInlcIiBcInlcIiBcInlcIiBcInlcIiAuLi5cbiAkIHBoeXNpY2FsX3NhbXBfYXZhaWxfbm93ICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJ5XCIgXCJ5XCIgXCJ5XCIgXCJ5XCIgLi4uXG4gJCBwaHlzaWNhbF9zYW1wbGVfbG9jYXRpb24gICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiVm9vbHN0cmEgTGFiLCBLQVVTVCwgU2F1ZGkgQXJhYmlhXCIgXCJWb29sc3RyYSBMYWIsIEtBVVNULCBTYXVkaSBBcmFiaWFcIiBcIlZvb2xzdHJhIExhYiwgS0FVU1QsIFNhdWRpIEFyYWJpYVwiIFwiVm9vbHN0cmEgTGFiLCBLQVVTVCwgU2F1ZGkgQXJhYmlhXCIgLi4uXG4gJCBjb21wYXJ0bWVudF9yZXBsaWNhdGVzICAgICAgICAgICAgICAgIDogbnVtIFsxOjE0NDBdIDEgMSAxIDEgMSAxIDEgMSAxIDEgLi4uXG4gJCBzYW1wbGVfdHlwZSAgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiRW50YWNtYWVhIE11Y3VzXCIgXCJBaXB0YXNpYSBUaXNzdWVcIiBcIkFpcHRhc2lhIFRpc3N1ZVwiIFwiQ29yYWwgTXVjdXNcIiAuLi5cbiAkIGVudl9tYXR0ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJtdWN1c1wiIFwib3JnYW5pYyBtYXRlcmlhbFwiIFwib3JnYW5pYyBtYXRlcmlhbFwiIFwibXVjdXNcIiAuLi5cbiAkIGxvY2FsX2NvbG9ueV9uYW1lICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJSOFwiIFwiQWlwdGFzaWEgMVwiIFwiQWlwdGFzaWEgMlwiIFwiUjFcIiAuLi5cbiAkIGNvbnRhY3RfZGVzY3JpcHRpb24gICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJOb25lXCIgXCJOb25lXCIgXCJOb25lXCIgXCJOb25lXCIgLi4uXG4gJCBsb2NhbF9zYW1wbGVfaWQgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiUjhfbXVjdXNcIiBcIkFpcHRhc2lhIDFfdGlzc3VlXCIgXCJBaXB0YXNpYSAyX3Rpc3N1ZVwiIFwiUjFfbXVjdXNcIiAuLi5cbiAkIFN5bWJpb19JVFMyX3NlcXVlbmNlZCAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJuXCIgXCJuXCIgXCJuXCIgXCJuXCIgLi4uXG4gJCBjb2xvbnlfbmFtZSAgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiRTQuT3V0LkVudC5xdWFkLjEuMjAxNTAzMTJcIiBcIkU0Lk91dC5BaXAuc3AuMS4yMDE1MDMxMFwiIFwiRTQuT3V0LkFpcC5zcC4yLjIwMTUwMzEwXCIgXCJFNC5PdXQuSGV0LmF1cm8uMS4yMDE1MDMxMlwiIC4uLlxuICQgaG9zdF9zY2llbnRpZmljX25hbWUgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIkVudGFjbWFlYSBxdWFkcmljb2xvclwiIFwiQWlwdGFzaWEgc3BcIiBcIkFpcHRhc2lhIHNwXCIgXCJIZXRlcmFjdGlzIGF1cm9yYVwiIC4uLlxuICQgaG9zdF9nZW51c19pZCAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIkVudGFjbWFlYVwiIFwiQWlwdGFzaWFcIiBcIkFpcHRhc2lhXCIgXCJIZXRlcmFjdGlzXCIgLi4uXG4gJCBob3N0X3NwZWNpZXNfaWQgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwicXVhZHJpY29sb3JcIiBcInNwXCIgXCJzcFwiIFwiYXVyb3JhXCIgLi4uXG4gJCBmaWVsZF9ob3N0X25hbWUgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiRW50YWNtYWVhIHF1YWRyaWNvbG9yXCIgXCJBaXB0YXNpYSBzcFwiIFwiQWlwdGFzaWEgc3BcIiBcIkhldGVyYWN0aXMgYXVyb3JhXCIgLi4uXG4gJCBmaWVsZF9ob3N0X2dlbnVzX2lkICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiRW50YWNtYWVhXCIgXCJBaXB0YXNpYVwiIFwiQWlwdGFzaWFcIiBcIkhldGVyYWN0aXNcIiAuLi5cbiAkIGZpZWxkX2hvc3Rfc3BlY2llc19pZCAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJxdWFkcmljb2xvclwiIFwic3BcIiBcInNwXCIgXCJhdXJvcmFcIiAuLi5cbiAkIGRvbWluYW50X2NvdmVyXzJtICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgLi4uXG4gJCBkZXB0aF9tZXRob2QgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwibWVhc3VyZWRcIiBcIm1lYXN1cmVkXCIgXCJtZWFzdXJlZFwiIFwibWVhc3VyZWRcIiAuLi5cbiAkIGNvbG9ueV9oZWlnaHRfbSAgICAgICAgICAgICAgICAgICAgICAgOiBudW0gWzE6MTQ0MF0gNyBOQSBOQSAxMCAzMCAxMCAxMCA1IDUgNSAuLi5cbiAkIGNvbG9ueV93aWR0aDEgICAgICAgICAgICAgICAgICAgICAgICAgOiBudW0gWzE6MTQ0MF0gMTAgTkEgTkEgMTUgNDAgMTIgMTIgNiA2IDYgLi4uXG4gJCBjb2xvbnlfd2lkdGgyICAgICAgICAgICAgICAgICAgICAgICAgIDogbnVtIFsxOjE0NDBdIDE1IE5BIE5BIDEwIDE1IDEwIDEwIDggOCA4IC4uLlxuICQgY29yYWxfY29sb3IgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIkU1XCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJENlwiIC4uLlxuICQgY29yYWxfY29sb3JfYWRkaXRpb25hbCAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIk5vbmVcIiBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiBcIkQyXCIgLi4uXG4gJCBiaW5hcnlfdGlzc3VlX2xvc3MgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiblwiIFwiblwiIFwiblwiIFwiblwiIC4uLlxuICQgdGlzc3VlX2xvc3NfcGVyY2VudCAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIjBcIiBcIjBcIiBcIjBcIiBcIjBcIiAuLi5cbiAkIGRpc2Vhc2VfbmFtZSAgICAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJOb25lXCIgXCJOb25lXCIgXCJOb25lXCIgXCJOb25lXCIgLi4uXG4gJCBiaW5hcnlfZGlzZWFzZSAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiblwiIFwiblwiIFwiblwiIFwiblwiIC4uLlxuICQgZGlzZWFzZV9wZXJjZW50ICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIjBcIiBcIjBcIiBcIjBcIiBcIjBcIiAuLi5cbiAkIGN5YW5vYmFjdGVyaWFfY29udGFjdCAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJuXCIgXCJuXCIgXCJuXCIgXCJ5XCIgLi4uXG4gJCBjeWFub2JhY3RlcmlhX3BlcmNlbnQgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiMFwiIFwiMFwiIFwiMFwiIFwiMTBcIiAuLi5cbiAkIGN5YW5vYmFjdGVyaWFfb3Zlcmdyb3duICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJOb25lXCIgXCJOb25lXCIgXCJOb25lXCIgXCJOb25lXCIgLi4uXG4gJCBiaW5hcnlfdHVyZl9jb250YWN0ICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwieVwiIFwiblwiIFwiblwiIFwieVwiIC4uLlxuICQgdHVyZl9jb250YWN0X3BlcmNlbnQgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIjVcIiBcIjBcIiBcIjBcIiBcIjIwXCIgLi4uXG4gJCB0dXJmX292ZXJncm93biAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIC4uLlxuICQgYmluYXJ5X2FsZ2FsX2NvbnRhY3QgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcInlcIiBcIm5cIiBcIm5cIiBcInlcIiAuLi5cbiAkIG5fYWxnYWxfY29udGFjdHMgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCIxXCIgXCIwXCIgXCIwXCIgXCIyXCIgLi4uXG4gJCBhbGdhbF9jb250YWN0X3R5cGVzICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwidHVyZlwiIFwiTm9uZVwiIFwiTm9uZVwiIFwidHVyZl9fY3lhbm9iYWN0ZXJpYVwiIC4uLlxuICQgYmluYXJ5X21hY3JvYWxnYWxfY29udGFjdCAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIm5cIiBcIm5cIiBcIm5cIiBcIm5cIiAuLi5cbiAkIG5fbWFjcm9hbGdhbF9jb250YWN0cyAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCIwXCIgXCIwXCIgXCIwXCIgXCIwXCIgLi4uXG4gJCBtYWNyb2FsZ2FsX2NvbnRhY3RfdHlwZXMgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIC4uLlxuICQgYmluYXJ5X0NDQV9jb250YWN0ICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIm5cIiBcIm5cIiBcIm5cIiBcIm5cIiAuLi5cbiAkIGNjYV9jb250YWN0X3BlcmNlbnQgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCIwXCIgXCIwXCIgXCIwXCIgXCIwXCIgLi4uXG4gJCBjY2Ffb3Zlcmdyb3duICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIC4uLlxuICQgc2VhZ3Jhc3NfY29udGFjdCAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIm5cIiBcIm5cIiBcIm5cIiBcIm5cIiAuLi5cbiAkIHBhcnJvdGZpc2hfYml0ZXMgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJuXCIgXCJuXCIgXCJuXCIgXCJuXCIgLi4uXG4gJCBpbnZlcnRlYnJhdGVfY29udGFjdF90eXBlcyAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiWGVuaWFfb2N0b2NvcmFsc1wiIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIC4uLlxuICQgY29yYWxfY29udGFjdF90eXBlcyAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIk5vbmVcIiBcIk5vbmVcIiBcIk5vbmVcIiBcIk5vbmVcIiAuLi5cbiAkIHNlZGltZW50X2NvbnRhY3QgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgXCJNaXNzaW5nOiBOb3QgY29sbGVjdGVkXCIgLi4uXG4gJCBiaW9sb2dpY2FsX3NhbXBsZV9ub3RlcyAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIC4uLlxuICQgdGlzc3VlX2NvbXBhcnRtZW50ICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIk1cIiBcIlRcIiBcIlRcIiBcIk1cIiAuLi5cbiAkIHNrZWxldGFsX2JhbmRfY29sb3IgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJVbmtub3duXCIgXCJVbmtub3duXCIgXCJVbmtub3duXCIgXCJVbmtub3duXCIgLi4uXG4gJCBjb21wYXJ0bWVudF9zZXBhcmF0aW9uX25vdGVzICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIFwiTm9uZVwiIC4uLlxuICQgQmlvbG9naWNhbE1hdHRlciAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIkVudGFjbWFlYSBNdWN1c1wiIFwiQWlwdGFzaWEgVGlzc3VlXCIgXCJBaXB0YXNpYSBUaXNzdWVcIiBcIkNvcmFsIE11Y3VzXCIgLi4uXG4gJCBIdWFuZ19Sb3lfdHJlZV9uYW1lICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwibm9uZVwiIFwibm9uZVwiIFwibm9uZVwiIFwibm9uZVwiIC4uLlxuICQgaG9zdF9nZW51cyAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIkVudGFjbWFlYVwiIFwiQWlwdGFzaWFcIiBcIkFpcHRhc2lhXCIgXCJIZXRlcmFjdGlzXCIgLi4uXG4gJCBob3N0X3NwZWNpZXMgICAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwicXVhZHJpY29sb3JcIiBcInNwXCIgXCJzcFwiIFwiYXVyb3JhXCIgLi4uXG4gJCBvel9kaXNlYXNlX21lYW4gICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiVW5rbm93blwiIFwiVW5rbm93blwiIFwiVW5rbm93blwiIFwiVW5rbm93blwiIC4uLlxuICQgb3pfZGlzZWFzZV9zZCAgICAgICAgICAgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiBcIk1pc3Npbmc6IE5vdCBjb2xsZWN0ZWRcIiAuLi5cbiAkIGhvc3RfY2xhZGVfc2Vuc3VfZnVrYW1pX251bWVyaWMgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJPdXRncm91cF9DbmlkYXJpYV9BbnRob3pvYV9BY3RpbmlhcmlhX0FjdGluaWlkYWVcIiBcIk91dGdyb3VwX0NuaWRhcmlhX0FudGhvem9hX0FjdGluaWFyaWFfQWlwdGFzaWlkYWVcIiBcIk91dGdyb3VwX0NuaWRhcmlhX0FudGhvem9hX0FjdGluaWFyaWFfQWlwdGFzaWlkYWVcIiBcIk91dGdyb3VwX0NuaWRhcmlhX0FudGhvem9hX0FjdGluaWFyaWFfU3RpY2hvZGFjdHlsaWRhZVwiIC4uLlxuICQgaG9zdF9jbGFkZV9zZW5zdV9mdWthbWkgICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIk91dGdyb3VwX0NuaWRhcmlhX0FudGhvem9hX0FjdGluaWFyaWFfQWN0aW5paWRhZVwiIFwiT3V0Z3JvdXBfQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYV9BaXB0YXNpaWRhZVwiIFwiT3V0Z3JvdXBfQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYV9BaXB0YXNpaWRhZVwiIFwiT3V0Z3JvdXBfQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYV9TdGljaG9kYWN0eWxpZGFlXCIgLi4uXG4gJCBUQVhPTl9JRCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogbnVtIFsxOjE0NDBdIDYxMTggMTI5MjIgMTI5MjIgNDc4Mzk5IDIzMDU2MiAuLi5cbiAkIE5DQklfaW5oZXJpdGVkX2JsYXN0X25hbWUgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJzZWEgYW5lbW9uZXNcIiBcInNlYSBhbmVtb25lc1wiIFwic2VhIGFuZW1vbmVzXCIgXCJzZWEgYW5lbW9uZXNcIiAuLi5cbiAkIGZ1bGxfdGF4b25vbXlfc3RyaW5nX3dpdGhfY2xhZGUgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJDbmlkYXJpYV9BbnRob3pvYV9BY3RpbmlhcmlhX0FjdGluaWlkYWVfRW50YWNtYWVhX3F1YWRyaWNvbG9yXCIgXCJDbmlkYXJpYV9BbnRob3pvYV9BY3RpbmlhcmlhX0FpcHRhc2lpZGFlX0FpcHRhc2lhX3NwXCIgXCJDbmlkYXJpYV9BbnRob3pvYV9BY3RpbmlhcmlhX0FpcHRhc2lpZGFlX0FpcHRhc2lhX3NwXCIgXCJDbmlkYXJpYV9BbnRob3pvYV9BY3RpbmlhcmlhX1N0aWNob2RhY3R5bGlkYWVfSGV0ZXJhY3Rpc19hdXJvcmFcIiAuLi5cbiAkIHRheG9ub215X3N0cmluZ190b19jbGFkZSAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJDbmlkYXJpYV9BbnRob3pvYV9BY3RpbmlhcmlhX0FjdGluaWlkYWVcIiBcIkNuaWRhcmlhX0FudGhvem9hX0FjdGluaWFyaWFfQWlwdGFzaWlkYWVcIiBcIkNuaWRhcmlhX0FudGhvem9hX0FjdGluaWFyaWFfQWlwdGFzaWlkYWVcIiBcIkNuaWRhcmlhX0FudGhvem9hX0FjdGluaWFyaWFfU3RpY2hvZGFjdHlsaWRhZVwiIC4uLlxuICQgdGF4b25vbXlfc3RyaW5nX3RvX2ZhbWlseSAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIkNuaWRhcmlhX0FudGhvem9hX0FjdGluaWFyaWFfQWN0aW5paWRhZVwiIFwiQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYV9BaXB0YXNpaWRhZVwiIFwiQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYV9BaXB0YXNpaWRhZVwiIFwiQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYV9TdGljaG9kYWN0eWxpZGFlXCIgLi4uXG4gJCB0YXhvbm9teV9zdHJpbmdfdG9fb3JkZXIgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwiQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYVwiIFwiQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYVwiIFwiQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYVwiIFwiQ25pZGFyaWFfQW50aG96b2FfQWN0aW5pYXJpYVwiIC4uLlxuICQgdGF4b25vbXlfc3RyaW5nX3RvX3N1YmNsYXNzICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIkNuaWRhcmlhX0FudGhvem9hX0hleGFjb3JhbGxpYVwiIFwiQ25pZGFyaWFfQW50aG96b2FfSGV4YWNvcmFsbGlhXCIgXCJDbmlkYXJpYV9BbnRob3pvYV9IZXhhY29yYWxsaWFcIiBcIkNuaWRhcmlhX0FudGhvem9hX0hleGFjb3JhbGxpYVwiIC4uLlxuICQgdGF4b25vbXlfc3RyaW5nX3RvX2NsYXNzICAgICAgICAgICAgICA6IGNociBbMToxNDQwXSBcIkNuaWRhcmlhX0FudGhvem9hXCIgXCJDbmlkYXJpYV9BbnRob3pvYVwiIFwiQ25pZGFyaWFfQW50aG96b2FcIiBcIkNuaWRhcmlhX0FudGhvem9hXCIgLi4uXG4gJCBjb21wbGV4X3JvYnVzdCAgICAgICAgICAgICAgICAgICAgICAgIDogY2hyIFsxOjE0NDBdIFwib3V0Z3JvdXBcIiBcIm91dGdyb3VwXCIgXCJvdXRncm91cFwiIFwib3V0Z3JvdXBcIiAuLi5cbiAkIGZhbWlseSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiBjaHIgWzE6MTQ0MF0gXCJBY3RpbmlpZGFlXCIgXCJBaXB0YXNpaWRhZVwiIFwiQWlwdGFzaWlkYWVcIiBcIlN0aWNob2RhY3R5bGlkYWVcIiAuLi5cbiAgW2xpc3Qgb3V0cHV0IHRydW5jYXRlZF1cbiAtIGF0dHIoKiwgXCJzcGVjXCIpPVxuICAuLiBjb2xzKFxuICAuLiAgIFNhbXBsZUlEID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHNhbXBsZV9uYW1lX2JhY2t1cCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBCYXJjb2RlU2VxdWVuY2UgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgTGlua2VyUHJpbWVyU2VxdWVuY2UgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgcnVuX2xhbmUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgcnVuX3ByZWZpeCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBzYW1wbGVfbmFtZV9tZiA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBwY3J0dWJlbm8gPSBjb2xfZG91YmxlKCksXG4gIC4uICAgcWlpdGFfc3R1ZHlfaWQgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgc2FtcGxlX3R5cGVfRU1QID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHNhbXBsZV9uYW1lX2ZpcnN0X2RlbXVsdGlwbGV4aW5nID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGNvbGxlY3Rpb25faWQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZGF0ZSA9IGNvbF9kYXRlKGZvcm1hdCA9IFwiJW0vJWQvJXlcIiksXG4gIC4uICAgY29uY2F0ZW5hdGVkX2RhdGUgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgcmVlZl9uYW1lID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGNvbGxlY3Rpb25fdGltZSA9IGNvbF90aW1lKGZvcm1hdCA9IFwiXCIpLFxuICAuLiAgIGNvbGxlY3Rpb25fdGltZXN0YW1wID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGRhaWx5X3JlcGxpY2F0ZSA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBsYXRpdHVkZSA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBsb25naXR1ZGUgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgc3Vic3RyYXRlID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGRlcHRoID0gY29sX251bWJlcigpLFxuICAuLiAgIHRlbXBlcmF0dXJlID0gY29sX251bWJlcigpLFxuICAuLiAgIHN1cmZhY2VfdGVtcGVyYXR1cmUgPSBjb2xfbnVtYmVyKCksXG4gIC4uICAgc2FsaW5pdHkgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgb3h5Z2VuID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHBob3Rvc3ludGhldGljYWxseV9hY3RpdmVfcmFkaWF0aW9uID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIFBBUl9tZXRob2QgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZG5hX2V4dHJhY3RlZCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBwaHlzaWNhbF9zYW1wX2F2YWlsX25vdyA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBwaHlzaWNhbF9zYW1wbGVfbG9jYXRpb24gPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgY29tcGFydG1lbnRfcmVwbGljYXRlcyA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBzYW1wbGVfdHlwZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBlbnZfbWF0dGVyID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGxvY2FsX2NvbG9ueV9uYW1lID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGNvbnRhY3RfZGVzY3JpcHRpb24gPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgbG9jYWxfc2FtcGxlX2lkID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIFN5bWJpb19JVFMyX3NlcXVlbmNlZCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBjb2xvbnlfbmFtZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBob3N0X3NjaWVudGlmaWNfbmFtZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBob3N0X2dlbnVzX2lkID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGhvc3Rfc3BlY2llc19pZCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBmaWVsZF9ob3N0X25hbWUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZmllbGRfaG9zdF9nZW51c19pZCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBmaWVsZF9ob3N0X3NwZWNpZXNfaWQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZG9taW5hbnRfY292ZXJfMm0gPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZGVwdGhfbWV0aG9kID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGNvbG9ueV9oZWlnaHRfbSA9IGNvbF9udW1iZXIoKSxcbiAgLi4gICBjb2xvbnlfd2lkdGgxID0gY29sX251bWJlcigpLFxuICAuLiAgIGNvbG9ueV93aWR0aDIgPSBjb2xfbnVtYmVyKCksXG4gIC4uICAgY29yYWxfY29sb3IgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgY29yYWxfY29sb3JfYWRkaXRpb25hbCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBiaW5hcnlfdGlzc3VlX2xvc3MgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgdGlzc3VlX2xvc3NfcGVyY2VudCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBkaXNlYXNlX25hbWUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgYmluYXJ5X2Rpc2Vhc2UgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZGlzZWFzZV9wZXJjZW50ID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGN5YW5vYmFjdGVyaWFfY29udGFjdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBjeWFub2JhY3RlcmlhX3BlcmNlbnQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgY3lhbm9iYWN0ZXJpYV9vdmVyZ3Jvd24gPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgYmluYXJ5X3R1cmZfY29udGFjdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICB0dXJmX2NvbnRhY3RfcGVyY2VudCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICB0dXJmX292ZXJncm93biA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBiaW5hcnlfYWxnYWxfY29udGFjdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBuX2FsZ2FsX2NvbnRhY3RzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGFsZ2FsX2NvbnRhY3RfdHlwZXMgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgYmluYXJ5X21hY3JvYWxnYWxfY29udGFjdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBuX21hY3JvYWxnYWxfY29udGFjdHMgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgbWFjcm9hbGdhbF9jb250YWN0X3R5cGVzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGJpbmFyeV9DQ0FfY29udGFjdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBjY2FfY29udGFjdF9wZXJjZW50ID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGNjYV9vdmVyZ3Jvd24gPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgc2VhZ3Jhc3NfY29udGFjdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBwYXJyb3RmaXNoX2JpdGVzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGludmVydGVicmF0ZV9jb250YWN0X3R5cGVzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGNvcmFsX2NvbnRhY3RfdHlwZXMgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgc2VkaW1lbnRfY29udGFjdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBiaW9sb2dpY2FsX3NhbXBsZV9ub3RlcyA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICB0aXNzdWVfY29tcGFydG1lbnQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgc2tlbGV0YWxfYmFuZF9jb2xvciA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBjb21wYXJ0bWVudF9zZXBhcmF0aW9uX25vdGVzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIEJpb2xvZ2ljYWxNYXR0ZXIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgSHVhbmdfUm95X3RyZWVfbmFtZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBob3N0X2dlbnVzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGhvc3Rfc3BlY2llcyA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBvel9kaXNlYXNlX21lYW4gPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgb3pfZGlzZWFzZV9zZCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBob3N0X2NsYWRlX3NlbnN1X2Z1a2FtaV9udW1lcmljID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGhvc3RfY2xhZGVfc2Vuc3VfZnVrYW1pID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIFRBWE9OX0lEID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIE5DQklfaW5oZXJpdGVkX2JsYXN0X25hbWUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZnVsbF90YXhvbm9teV9zdHJpbmdfd2l0aF9jbGFkZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICB0YXhvbm9teV9zdHJpbmdfdG9fY2xhZGUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgdGF4b25vbXlfc3RyaW5nX3RvX2ZhbWlseSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICB0YXhvbm9teV9zdHJpbmdfdG9fb3JkZXIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgdGF4b25vbXlfc3RyaW5nX3RvX3N1YmNsYXNzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHRheG9ub215X3N0cmluZ190b19jbGFzcyA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBjb21wbGV4X3JvYnVzdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBmYW1pbHkgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgb3V0Z3JvdXAgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgY29tbW9uX25hbWUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgc3lub255bXMgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgY29yYWxsaXRlX3R5cGUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgY2FsY2lmaWVzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHNwZWNpZXNfbm90ZXMgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZnVuY3Rpb25hbF9ncm91cF9zZW5zdV9kYXJsaW5nID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIEFidW5kYW5jZS5HQlIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgQWJ1bmRhbmNlLndvcmxkID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIENvbG9uaWFsaXR5ID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIENvbG9ueS5tYXhpbXVtLmRpYW1ldGVyID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIENvbG9ueS5tYXhpbXVtLmRpYW1ldGVyLnVuaXQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgQ29yYWxsaXRlLndpZHRoLm1heGltdW0gPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgQ29yYWxsaXRlLndpZHRoLm1heGltdW0udW5pdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBDb3JhbGxpdGUud2lkdGgubWluaW11bSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBDb3JhbGxpdGUud2lkdGgubWluaW11bS51bml0ID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIERlcHRoLmxvd2VyID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIERlcHRoLmxvd2VyLnVuaXQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgRGVwdGgudXBwZXIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgRGVwdGgudXBwZXIudW5pdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBFYXN0ZXJuLm1vc3QucmFuZ2UuZWRnZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBHZW51cy5mb3NzaWwuYWdlID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIEdlbnVzLmZvc3NpbC5hZ2UudW5pdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBHcm93dGguZm9ybS50eXBpY2FsID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIEdyb3d0aC5vdXRsaW5lLnR5cGUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgSVVDTi5SZWQuTGlzdC5jYXRlZ29yeSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBNb2RlLm9mLmxhcnZhbC5kZXZlbG9wbWVudCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBOb3J0aGVybi5tb3N0LnJhbmdlLmVkZ2UgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgT29jeXRlLnNpemUuYXQubWF0dXJpdHkgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgT29jeXRlLnNpemUuYXQubWF0dXJpdHkudW5pdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBQcm9wYWd1bGUuc2l6ZS5vbi5yZWxlYXNlLm1heCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBQcm9wYWd1bGUuc2l6ZS5vbi5yZWxlYXNlLm1heC51bml0ID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIFByb3BhZ3VsZS5zaXplLm9uLnJlbGVhc2UubWVhbiA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBQcm9wYWd1bGUuc2l6ZS5vbi5yZWxlYXNlLm1lYW4udW5pdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBSYW5nZS5zaXplID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIFJhbmdlLnNpemUudW5pdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBTZXh1YWwuc3lzdGVtID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIFNrZWxldGFsLmRlbnNpdHkgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgU2tlbGV0YWwuZGVuc2l0eS51bml0ID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIFNvdXRoZXJuLm1vc3QucmFuZ2UuZWRnZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBTcGVjaWVzLmFnZS5waHlsb2dlbnkgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgU3BlY2llcy5hZ2UucGh5bG9nZW55LnVuaXQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgU3Vic3RyYXRlLmF0dGFjaG1lbnQgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgU3ltYmlvZGluaXVtLnNwLi5pbi5wcm9wYWd1bGVzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIFdhdGVyLmNsYXJpdHkucHJlZmVyZW5jZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBXYXZlLmV4cG9zdXJlLnByZWZlcmVuY2UgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgV2VzdGVybi5tb3N0LnJhbmdlLmVkZ2UgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgWm9veGFudGhlbGxhdGUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgcHJvcF9Db2xvbnlfbWF4aW11bV9HQ01QX3JlY29yZGVkID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHByb3BfQ29sb255X21heGltdW1fZGlhbWV0ZXJfdW5pdmVyc2FsID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHByb3BfQ29sb255X21heGltdW1fZGlhbWV0ZXIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgQ29sb255X21heGltdW1fZGlhbWV0ZXIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgQ29sb255X21heGltdW1fR0NNUF9yZWNvcmRlZCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBDb2xvbnlfbWF4aW11bV9kaWFtZXRlcl91bml2ZXJzYWwgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgcmVlZl90eXBlID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHNoZWxmX2xvY2F0aW9uID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHNpdGVfbmFtZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBnZW9ncmFwaGljX2FyZWEgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgcG9saXRpY2FsX2FyZWEgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgb2NlYW5fYXJlYSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBvY2VhbiA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBvY2Vhbl9zdXBlcnJlZ2lvbiA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBmdWxsX2xvY2F0aW9uID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGhlbWlzcGhlcmUgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgZXhwZWRpdGlvbl9udW1iZXIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgc2FtcGxpbmdfZXhwZWRpdGlvbiA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBjb3VudHJ5ID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIGNvbGxlY3RlZF9ieSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICByZWxldmFudF9jb2xsYWJvcmF0b3JzID0gY29sX2NoYXJhY3RlcigpLFxuICAuLiAgIHZpc2liaWxpdHkgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgdmlzaWJpbGl0eV9tZXRob2QgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgRGVzY3JpcHRpb24gPSBjb2xfY2hhcmFjdGVyKClcbiAgLi4gKVxuIC0gYXR0cigqLCBcInByb2JsZW1zXCIpPTxleHRlcm5hbHB0cj4gXG4ifQ== -->
+<pre><code>spc_tbl_ [1,440 × 171] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ SampleID                              : chr [1:1440] &quot;10895.E4.Out.Ent.quad.1.20150312.M&quot; &quot;10895.E4.Out.Aip.sp.1.20150310.T&quot; &quot;10895.E4.Out.Aip.sp.2.20150310.T&quot; &quot;10895.E4.Out.Het.auro.1.20150312.M&quot; ...
+ $ sample_name_backup                    : chr [1:1440] &quot;E4.Out.Ent.quad.1.20150312.M&quot; &quot;E4.Out.Aip.sp.1.20150310.T&quot; &quot;E4.Out.Aip.sp.2.20150310.T&quot; &quot;E4.Out.Het.auro.1.20150312.M&quot; ...
+ $ BarcodeSequence                       : chr [1:1440] &quot;AGTAGTTTCCTT&quot; &quot;CCTACCATTGTT&quot; &quot;CATTTCGCACTT&quot; &quot;ACAGTTGTACGC&quot; ...
+ $ LinkerPrimerSequence                  : chr [1:1440] &quot;GTGTGCCAGCMGCCGCGGTAA&quot; &quot;GTGTGCCAGCMGCCGCGGTAA&quot; &quot;GTGTGCCAGCMGCCGCGGTAA&quot; &quot;GTGTGCCAGCMGCCGCGGTAA&quot; ...
+ $ run_lane                              : chr [1:1440] &quot;Run2 Lane 8&quot; &quot;Run2 Lane 8&quot; &quot;Run2 Lane 8&quot; &quot;Run2 Lane 8&quot; ...
+ $ run_prefix                            : chr [1:1440] &quot;GCMP2_Lane8_S8_L008&quot; &quot;GCMP2_Lane8_S8_L008&quot; &quot;GCMP2_Lane8_S8_L008&quot; &quot;GCMP2_Lane8_S8_L008&quot; ...
+ $ sample_name_mf                        : chr [1:1440] &quot;E4.Out.Ent.quad.1.20150312.M&quot; &quot;E4.Out.Aip.sp.1.20150310.T&quot; &quot;E4.Out.Aip.sp.2.20150310.T&quot; &quot;E4.Out.Het.auro.1.20150312.M&quot; ...
+ $ pcrtubeno                             : num [1:1440] 1043 883 884 1022 1061 ...
+ $ qiita_study_id                        : num [1:1440] 10895 10895 10895 10895 10895 ...
+ $ sample_type_EMP                       : chr [1:1440] &quot;coral&quot; &quot;coral&quot; &quot;coral&quot; &quot;coral&quot; ...
+ $ sample_name_first_demultiplexing      : chr [1:1440] &quot;10895.E4.Out.Ent.quad.1.20150312.M&quot; &quot;10895.E4.Out.Aip.sp.1.20150310.T&quot; &quot;10895.E4.Out.Aip.sp.2.20150310.T&quot; &quot;10895.E4.Out.Het.auro.1.20150312.M&quot; ...
+ $ collection_id                         : chr [1:1440] &quot;Inner Fsar_20150312&quot; &quot;KAUST Buoy 0340_20150310&quot; &quot;KAUST Buoy 0340_20150310&quot; &quot;Inner Fsar_20150312&quot; ...
+ $ date                                  : Date[1:1440], format: &quot;2015-03-12&quot; &quot;2015-03-10&quot; ...
+ $ concatenated_date                     : num [1:1440] 20150312 20150310 20150310 20150312 20150823 ...
+ $ reef_name                             : chr [1:1440] &quot;Inner Fsar&quot; &quot;KAUST Buoy 0340&quot; &quot;KAUST Buoy 0340&quot; &quot;Inner Fsar&quot; ...
+ $ collection_time                       : &#39;hms&#39; num [1:1440] 09:52:00 13:45:00 13:45:00 10:13:00 ...
+  ..- attr(*, &quot;units&quot;)= chr &quot;secs&quot;
+ $ collection_timestamp                  : chr [1:1440] &quot;3/12/15 9:52&quot; &quot;3/10/15 13:45&quot; &quot;3/10/15 13:45&quot; &quot;3/12/15 10:13&quot; ...
+ $ daily_replicate                       : num [1:1440] 1 1 2 1 1 1 1 1 1 1 ...
+ $ latitude                              : num [1:1440] 22.2 20.1 20.1 22.2 -21 ...
+ $ longitude                             : num [1:1440] 39 40.2 40.2 39 55.2 ...
+ $ substrate                             : chr [1:1440] &quot;rock_rubble_sediment&quot; &quot;mooring_line&quot; &quot;mooring_line&quot; &quot;rock_sediment&quot; ...
+ $ depth                                 : num [1:1440] 4.88 7.62 7.62 4.88 15.54 ...
+ $ temperature                           : num [1:1440] 26.7 27.8 27.8 26.7 24.4 ...
+ $ surface_temperature                   : num [1:1440] NA NA NA NA 24.4 ...
+ $ salinity                              : chr [1:1440] &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; ...
+ $ oxygen                                : chr [1:1440] &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; ...
+ $ photosynthetically_active_radiation   : chr [1:1440] &quot;6400&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;10500&quot; ...
+ $ PAR_method                            : chr [1:1440] &quot;PAR meter pointed upwards near coral&quot; &quot;PAR meter pointed upwards near coral&quot; &quot;PAR meter pointed upwards near coral&quot; &quot;PAR meter pointed upwards near coral&quot; ...
+ $ dna_extracted                         : chr [1:1440] &quot;y&quot; &quot;y&quot; &quot;y&quot; &quot;y&quot; ...
+ $ physical_samp_avail_now               : chr [1:1440] &quot;y&quot; &quot;y&quot; &quot;y&quot; &quot;y&quot; ...
+ $ physical_sample_location              : chr [1:1440] &quot;Voolstra Lab, KAUST, Saudi Arabia&quot; &quot;Voolstra Lab, KAUST, Saudi Arabia&quot; &quot;Voolstra Lab, KAUST, Saudi Arabia&quot; &quot;Voolstra Lab, KAUST, Saudi Arabia&quot; ...
+ $ compartment_replicates                : num [1:1440] 1 1 1 1 1 1 1 1 1 1 ...
+ $ sample_type                           : chr [1:1440] &quot;Entacmaea Mucus&quot; &quot;Aiptasia Tissue&quot; &quot;Aiptasia Tissue&quot; &quot;Coral Mucus&quot; ...
+ $ env_matter                            : chr [1:1440] &quot;mucus&quot; &quot;organic material&quot; &quot;organic material&quot; &quot;mucus&quot; ...
+ $ local_colony_name                     : chr [1:1440] &quot;R8&quot; &quot;Aiptasia 1&quot; &quot;Aiptasia 2&quot; &quot;R1&quot; ...
+ $ contact_description                   : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ local_sample_id                       : chr [1:1440] &quot;R8_mucus&quot; &quot;Aiptasia 1_tissue&quot; &quot;Aiptasia 2_tissue&quot; &quot;R1_mucus&quot; ...
+ $ Symbio_ITS2_sequenced                 : chr [1:1440] &quot;n&quot; &quot;n&quot; &quot;n&quot; &quot;n&quot; ...
+ $ colony_name                           : chr [1:1440] &quot;E4.Out.Ent.quad.1.20150312&quot; &quot;E4.Out.Aip.sp.1.20150310&quot; &quot;E4.Out.Aip.sp.2.20150310&quot; &quot;E4.Out.Het.auro.1.20150312&quot; ...
+ $ host_scientific_name                  : chr [1:1440] &quot;Entacmaea quadricolor&quot; &quot;Aiptasia sp&quot; &quot;Aiptasia sp&quot; &quot;Heteractis aurora&quot; ...
+ $ host_genus_id                         : chr [1:1440] &quot;Entacmaea&quot; &quot;Aiptasia&quot; &quot;Aiptasia&quot; &quot;Heteractis&quot; ...
+ $ host_species_id                       : chr [1:1440] &quot;quadricolor&quot; &quot;sp&quot; &quot;sp&quot; &quot;aurora&quot; ...
+ $ field_host_name                       : chr [1:1440] &quot;Entacmaea quadricolor&quot; &quot;Aiptasia sp&quot; &quot;Aiptasia sp&quot; &quot;Heteractis aurora&quot; ...
+ $ field_host_genus_id                   : chr [1:1440] &quot;Entacmaea&quot; &quot;Aiptasia&quot; &quot;Aiptasia&quot; &quot;Heteractis&quot; ...
+ $ field_host_species_id                 : chr [1:1440] &quot;quadricolor&quot; &quot;sp&quot; &quot;sp&quot; &quot;aurora&quot; ...
+ $ dominant_cover_2m                     : chr [1:1440] &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; ...
+ $ depth_method                          : chr [1:1440] &quot;measured&quot; &quot;measured&quot; &quot;measured&quot; &quot;measured&quot; ...
+ $ colony_height_m                       : num [1:1440] 7 NA NA 10 30 10 10 5 5 5 ...
+ $ colony_width1                         : num [1:1440] 10 NA NA 15 40 12 12 6 6 6 ...
+ $ colony_width2                         : num [1:1440] 15 NA NA 10 15 10 10 8 8 8 ...
+ $ coral_color                           : chr [1:1440] &quot;E5&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;D6&quot; ...
+ $ coral_color_additional                : chr [1:1440] &quot;None&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;D2&quot; ...
+ $ binary_tissue_loss                    : chr [1:1440] &quot;n&quot; &quot;n&quot; &quot;n&quot; &quot;n&quot; ...
+ $ tissue_loss_percent                   : chr [1:1440] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+ $ disease_name                          : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ binary_disease                        : chr [1:1440] &quot;n&quot; &quot;n&quot; &quot;n&quot; &quot;n&quot; ...
+ $ disease_percent                       : chr [1:1440] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+ $ cyanobacteria_contact                 : chr [1:1440] &quot;n&quot; &quot;n&quot; &quot;n&quot; &quot;y&quot; ...
+ $ cyanobacteria_percent                 : chr [1:1440] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;10&quot; ...
+ $ cyanobacteria_overgrown               : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ binary_turf_contact                   : chr [1:1440] &quot;y&quot; &quot;n&quot; &quot;n&quot; &quot;y&quot; ...
+ $ turf_contact_percent                  : chr [1:1440] &quot;5&quot; &quot;0&quot; &quot;0&quot; &quot;20&quot; ...
+ $ turf_overgrown                        : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ binary_algal_contact                  : chr [1:1440] &quot;y&quot; &quot;n&quot; &quot;n&quot; &quot;y&quot; ...
+ $ n_algal_contacts                      : chr [1:1440] &quot;1&quot; &quot;0&quot; &quot;0&quot; &quot;2&quot; ...
+ $ algal_contact_types                   : chr [1:1440] &quot;turf&quot; &quot;None&quot; &quot;None&quot; &quot;turf__cyanobacteria&quot; ...
+ $ binary_macroalgal_contact             : chr [1:1440] &quot;n&quot; &quot;n&quot; &quot;n&quot; &quot;n&quot; ...
+ $ n_macroalgal_contacts                 : chr [1:1440] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+ $ macroalgal_contact_types              : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ binary_CCA_contact                    : chr [1:1440] &quot;n&quot; &quot;n&quot; &quot;n&quot; &quot;n&quot; ...
+ $ cca_contact_percent                   : chr [1:1440] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+ $ cca_overgrown                         : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ seagrass_contact                      : chr [1:1440] &quot;n&quot; &quot;n&quot; &quot;n&quot; &quot;n&quot; ...
+ $ parrotfish_bites                      : chr [1:1440] &quot;n&quot; &quot;n&quot; &quot;n&quot; &quot;n&quot; ...
+ $ invertebrate_contact_types            : chr [1:1440] &quot;Xenia_octocorals&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ coral_contact_types                   : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ sediment_contact                      : chr [1:1440] &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; ...
+ $ biological_sample_notes               : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ tissue_compartment                    : chr [1:1440] &quot;M&quot; &quot;T&quot; &quot;T&quot; &quot;M&quot; ...
+ $ skeletal_band_color                   : chr [1:1440] &quot;Unknown&quot; &quot;Unknown&quot; &quot;Unknown&quot; &quot;Unknown&quot; ...
+ $ compartment_separation_notes          : chr [1:1440] &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;None&quot; ...
+ $ BiologicalMatter                      : chr [1:1440] &quot;Entacmaea Mucus&quot; &quot;Aiptasia Tissue&quot; &quot;Aiptasia Tissue&quot; &quot;Coral Mucus&quot; ...
+ $ Huang_Roy_tree_name                   : chr [1:1440] &quot;none&quot; &quot;none&quot; &quot;none&quot; &quot;none&quot; ...
+ $ host_genus                            : chr [1:1440] &quot;Entacmaea&quot; &quot;Aiptasia&quot; &quot;Aiptasia&quot; &quot;Heteractis&quot; ...
+ $ host_species                          : chr [1:1440] &quot;quadricolor&quot; &quot;sp&quot; &quot;sp&quot; &quot;aurora&quot; ...
+ $ oz_disease_mean                       : chr [1:1440] &quot;Unknown&quot; &quot;Unknown&quot; &quot;Unknown&quot; &quot;Unknown&quot; ...
+ $ oz_disease_sd                         : chr [1:1440] &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; &quot;Missing: Not collected&quot; ...
+ $ host_clade_sensu_fukami_numeric       : chr [1:1440] &quot;Outgroup_Cnidaria_Anthozoa_Actiniaria_Actiniidae&quot; &quot;Outgroup_Cnidaria_Anthozoa_Actiniaria_Aiptasiidae&quot; &quot;Outgroup_Cnidaria_Anthozoa_Actiniaria_Aiptasiidae&quot; &quot;Outgroup_Cnidaria_Anthozoa_Actiniaria_Stichodactylidae&quot; ...
+ $ host_clade_sensu_fukami               : chr [1:1440] &quot;Outgroup_Cnidaria_Anthozoa_Actiniaria_Actiniidae&quot; &quot;Outgroup_Cnidaria_Anthozoa_Actiniaria_Aiptasiidae&quot; &quot;Outgroup_Cnidaria_Anthozoa_Actiniaria_Aiptasiidae&quot; &quot;Outgroup_Cnidaria_Anthozoa_Actiniaria_Stichodactylidae&quot; ...
+ $ TAXON_ID                              : num [1:1440] 6118 12922 12922 478399 230562 ...
+ $ NCBI_inherited_blast_name             : chr [1:1440] &quot;sea anemones&quot; &quot;sea anemones&quot; &quot;sea anemones&quot; &quot;sea anemones&quot; ...
+ $ full_taxonomy_string_with_clade       : chr [1:1440] &quot;Cnidaria_Anthozoa_Actiniaria_Actiniidae_Entacmaea_quadricolor&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Aiptasiidae_Aiptasia_sp&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Aiptasiidae_Aiptasia_sp&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Stichodactylidae_Heteractis_aurora&quot; ...
+ $ taxonomy_string_to_clade              : chr [1:1440] &quot;Cnidaria_Anthozoa_Actiniaria_Actiniidae&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Aiptasiidae&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Aiptasiidae&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Stichodactylidae&quot; ...
+ $ taxonomy_string_to_family             : chr [1:1440] &quot;Cnidaria_Anthozoa_Actiniaria_Actiniidae&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Aiptasiidae&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Aiptasiidae&quot; &quot;Cnidaria_Anthozoa_Actiniaria_Stichodactylidae&quot; ...
+ $ taxonomy_string_to_order              : chr [1:1440] &quot;Cnidaria_Anthozoa_Actiniaria&quot; &quot;Cnidaria_Anthozoa_Actiniaria&quot; &quot;Cnidaria_Anthozoa_Actiniaria&quot; &quot;Cnidaria_Anthozoa_Actiniaria&quot; ...
+ $ taxonomy_string_to_subclass           : chr [1:1440] &quot;Cnidaria_Anthozoa_Hexacorallia&quot; &quot;Cnidaria_Anthozoa_Hexacorallia&quot; &quot;Cnidaria_Anthozoa_Hexacorallia&quot; &quot;Cnidaria_Anthozoa_Hexacorallia&quot; ...
+ $ taxonomy_string_to_class              : chr [1:1440] &quot;Cnidaria_Anthozoa&quot; &quot;Cnidaria_Anthozoa&quot; &quot;Cnidaria_Anthozoa&quot; &quot;Cnidaria_Anthozoa&quot; ...
+ $ complex_robust                        : chr [1:1440] &quot;outgroup&quot; &quot;outgroup&quot; &quot;outgroup&quot; &quot;outgroup&quot; ...
+ $ family                                : chr [1:1440] &quot;Actiniidae&quot; &quot;Aiptasiidae&quot; &quot;Aiptasiidae&quot; &quot;Stichodactylidae&quot; ...
+  [list output truncated]
+ - attr(*, &quot;spec&quot;)=
+  .. cols(
+  ..   SampleID = col_character(),
+  ..   sample_name_backup = col_character(),
+  ..   BarcodeSequence = col_character(),
+  ..   LinkerPrimerSequence = col_character(),
+  ..   run_lane = col_character(),
+  ..   run_prefix = col_character(),
+  ..   sample_name_mf = col_character(),
+  ..   pcrtubeno = col_double(),
+  ..   qiita_study_id = col_double(),
+  ..   sample_type_EMP = col_character(),
+  ..   sample_name_first_demultiplexing = col_character(),
+  ..   collection_id = col_character(),
+  ..   date = col_date(format = &quot;%m/%d/%y&quot;),
+  ..   concatenated_date = col_double(),
+  ..   reef_name = col_character(),
+  ..   collection_time = col_time(format = &quot;&quot;),
+  ..   collection_timestamp = col_character(),
+  ..   daily_replicate = col_double(),
+  ..   latitude = col_double(),
+  ..   longitude = col_double(),
+  ..   substrate = col_character(),
+  ..   depth = col_number(),
+  ..   temperature = col_number(),
+  ..   surface_temperature = col_number(),
+  ..   salinity = col_character(),
+  ..   oxygen = col_character(),
+  ..   photosynthetically_active_radiation = col_character(),
+  ..   PAR_method = col_character(),
+  ..   dna_extracted = col_character(),
+  ..   physical_samp_avail_now = col_character(),
+  ..   physical_sample_location = col_character(),
+  ..   compartment_replicates = col_double(),
+  ..   sample_type = col_character(),
+  ..   env_matter = col_character(),
+  ..   local_colony_name = col_character(),
+  ..   contact_description = col_character(),
+  ..   local_sample_id = col_character(),
+  ..   Symbio_ITS2_sequenced = col_character(),
+  ..   colony_name = col_character(),
+  ..   host_scientific_name = col_character(),
+  ..   host_genus_id = col_character(),
+  ..   host_species_id = col_character(),
+  ..   field_host_name = col_character(),
+  ..   field_host_genus_id = col_character(),
+  ..   field_host_species_id = col_character(),
+  ..   dominant_cover_2m = col_character(),
+  ..   depth_method = col_character(),
+  ..   colony_height_m = col_number(),
+  ..   colony_width1 = col_number(),
+  ..   colony_width2 = col_number(),
+  ..   coral_color = col_character(),
+  ..   coral_color_additional = col_character(),
+  ..   binary_tissue_loss = col_character(),
+  ..   tissue_loss_percent = col_character(),
+  ..   disease_name = col_character(),
+  ..   binary_disease = col_character(),
+  ..   disease_percent = col_character(),
+  ..   cyanobacteria_contact = col_character(),
+  ..   cyanobacteria_percent = col_character(),
+  ..   cyanobacteria_overgrown = col_character(),
+  ..   binary_turf_contact = col_character(),
+  ..   turf_contact_percent = col_character(),
+  ..   turf_overgrown = col_character(),
+  ..   binary_algal_contact = col_character(),
+  ..   n_algal_contacts = col_character(),
+  ..   algal_contact_types = col_character(),
+  ..   binary_macroalgal_contact = col_character(),
+  ..   n_macroalgal_contacts = col_character(),
+  ..   macroalgal_contact_types = col_character(),
+  ..   binary_CCA_contact = col_character(),
+  ..   cca_contact_percent = col_character(),
+  ..   cca_overgrown = col_character(),
+  ..   seagrass_contact = col_character(),
+  ..   parrotfish_bites = col_character(),
+  ..   invertebrate_contact_types = col_character(),
+  ..   coral_contact_types = col_character(),
+  ..   sediment_contact = col_character(),
+  ..   biological_sample_notes = col_character(),
+  ..   tissue_compartment = col_character(),
+  ..   skeletal_band_color = col_character(),
+  ..   compartment_separation_notes = col_character(),
+  ..   BiologicalMatter = col_character(),
+  ..   Huang_Roy_tree_name = col_character(),
+  ..   host_genus = col_character(),
+  ..   host_species = col_character(),
+  ..   oz_disease_mean = col_character(),
+  ..   oz_disease_sd = col_character(),
+  ..   host_clade_sensu_fukami_numeric = col_character(),
+  ..   host_clade_sensu_fukami = col_character(),
+  ..   TAXON_ID = col_double(),
+  ..   NCBI_inherited_blast_name = col_character(),
+  ..   full_taxonomy_string_with_clade = col_character(),
+  ..   taxonomy_string_to_clade = col_character(),
+  ..   taxonomy_string_to_family = col_character(),
+  ..   taxonomy_string_to_order = col_character(),
+  ..   taxonomy_string_to_subclass = col_character(),
+  ..   taxonomy_string_to_class = col_character(),
+  ..   complex_robust = col_character(),
+  ..   family = col_character(),
+  ..   outgroup = col_character(),
+  ..   common_name = col_character(),
+  ..   synonyms = col_character(),
+  ..   corallite_type = col_character(),
+  ..   calcifies = col_character(),
+  ..   species_notes = col_character(),
+  ..   functional_group_sensu_darling = col_character(),
+  ..   Abundance.GBR = col_character(),
+  ..   Abundance.world = col_character(),
+  ..   Coloniality = col_character(),
+  ..   Colony.maximum.diameter = col_character(),
+  ..   Colony.maximum.diameter.unit = col_character(),
+  ..   Corallite.width.maximum = col_character(),
+  ..   Corallite.width.maximum.unit = col_character(),
+  ..   Corallite.width.minimum = col_character(),
+  ..   Corallite.width.minimum.unit = col_character(),
+  ..   Depth.lower = col_character(),
+  ..   Depth.lower.unit = col_character(),
+  ..   Depth.upper = col_character(),
+  ..   Depth.upper.unit = col_character(),
+  ..   Eastern.most.range.edge = col_character(),
+  ..   Genus.fossil.age = col_character(),
+  ..   Genus.fossil.age.unit = col_character(),
+  ..   Growth.form.typical = col_character(),
+  ..   Growth.outline.type = col_character(),
+  ..   IUCN.Red.List.category = col_character(),
+  ..   Mode.of.larval.development = col_character(),
+  ..   Northern.most.range.edge = col_character(),
+  ..   Oocyte.size.at.maturity = col_character(),
+  ..   Oocyte.size.at.maturity.unit = col_character(),
+  ..   Propagule.size.on.release.max = col_character(),
+  ..   Propagule.size.on.release.max.unit = col_character(),
+  ..   Propagule.size.on.release.mean = col_character(),
+  ..   Propagule.size.on.release.mean.unit = col_character(),
+  ..   Range.size = col_character(),
+  ..   Range.size.unit = col_character(),
+  ..   Sexual.system = col_character(),
+  ..   Skeletal.density = col_character(),
+  ..   Skeletal.density.unit = col_character(),
+  ..   Southern.most.range.edge = col_character(),
+  ..   Species.age.phylogeny = col_character(),
+  ..   Species.age.phylogeny.unit = col_character(),
+  ..   Substrate.attachment = col_character(),
+  ..   Symbiodinium.sp..in.propagules = col_character(),
+  ..   Water.clarity.preference = col_character(),
+  ..   Wave.exposure.preference = col_character(),
+  ..   Western.most.range.edge = col_character(),
+  ..   Zooxanthellate = col_character(),
+  ..   prop_Colony_maximum_GCMP_recorded = col_character(),
+  ..   prop_Colony_maximum_diameter_universal = col_character(),
+  ..   prop_Colony_maximum_diameter = col_character(),
+  ..   Colony_maximum_diameter = col_character(),
+  ..   Colony_maximum_GCMP_recorded = col_character(),
+  ..   Colony_maximum_diameter_universal = col_character(),
+  ..   reef_type = col_character(),
+  ..   shelf_location = col_character(),
+  ..   site_name = col_character(),
+  ..   geographic_area = col_character(),
+  ..   political_area = col_character(),
+  ..   ocean_area = col_character(),
+  ..   ocean = col_character(),
+  ..   ocean_superregion = col_character(),
+  ..   full_location = col_character(),
+  ..   hemisphere = col_character(),
+  ..   expedition_number = col_character(),
+  ..   sampling_expedition = col_character(),
+  ..   country = col_character(),
+  ..   collected_by = col_character(),
+  ..   relevant_collaborators = col_character(),
+  ..   visibility = col_character(),
+  ..   visibility_method = col_character(),
+  ..   Description = col_character()
+  .. )
+ - attr(*, &quot;problems&quot;)=&lt;externalptr&gt; </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1903,7 +2175,7 @@ working directory.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3Jvc3N3YWxraW5nIEdsb2JhbCBDb3JhbCBNaWNyb2Jpb21lIERhdGEgKEdDTVApIGludG8gdGhlIEdlbm9taWMgT2JzZXJ2YXRvcmllcyBNZXRhZGF0YWJhc2UgKEdFT01FKSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBJbnRyb2R1Y3Rpb24KClRoaXMgbm90ZWJvb2sgZG9jdW1lbnRzIHRoZSBjb2RlIHVzZWQgdG8gdHJhbnNsYXRlIHRoZSBHbG9iYWwgQ29yYWwgTWljcm9iaW9tZSBQcm9qZWN0J3MgKEdDTVApIGNvbGxhdGVkIG1ldGFkYXRhIChwcm92aWRlZCBieSBKZXNzZSBaYW5ldmVsZCkgaW50byBhIGZvcm1hdCB0aGF0IEdFT01FIGNhbiBpbmdlc3QuIFdlIGFyZSBob3BpbmcgdG8gc2hhcmUgdGhlIEdDTVAgbWV0YWRhdGEgb24gR0VPTUUgYW5kIGZvciB0aGlzIHRvIGJlIGEgdXNlLWNhc2UgdG8gaGVscCBpbXByb3ZlIEdFT01FJ3MgYWJpbGl0eSB0byBzdG9yZSBtaWNyb2Jpb21lIG1ldGFkYXRhLgoKVGhlIG1ldGFkYXRhIHByb3ZpZGVkIGJ5IEplc3NlIGFyZSBpbiBgR0NNUF9FTVBfbWFwX3IyOS50eHRgLiBUaGUgdGVtcGxhdGUgdG8gd2hpY2ggd2Ugd2FudCB0byB3cml0ZSB0aGUgZGF0YSBpcyBpbiBgR2xvYmFsIENvcmFsIE1pY3JvYmlvbWUgUHJvamVjdC54bHN4YAoKIyBTZXR1cAoKYGBge3Igc2V0dXB9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGx1YnJpZGF0ZSkKbGlicmFyeSh4bHN4KQoKYGBgCgojIEltcG9ydGluZyB0aGUgZGF0YQoKYGBge3J9Cgp5X29yX24gPC0gZnVuY3Rpb24oeCl7CiAgeCA9PSAieSIKfQoKZGYgPC0gcmVhZF90c3YoZmlsZSA9ICJHQ01QX0VNUF9tYXBfcjI5LnR4dCIsIG5hID0gYygiIiwiTkEiLCJuYSIsIk5vdCBBcHBsaWNhYmxlIiksCiAgICAgICAgICAgICAgY29sX3R5cGVzID0gY29scygKICAgICAgICAgICAgICAgIGRhdGUgPSBjb2xfZGF0ZShmb3JtYXQgPSAiJW0vJWQvJXkiKSwKICAgICAgICAgICAgICAgIGRlcHRoID0gIm4iLAogICAgICAgICAgICAgICAgdGVtcGVyYXR1cmUgPSAibiIsCiAgICAgICAgICAgICAgICBzdXJmYWNlX3RlbXBlcmF0dXJlID0gIm4iLAogICAgICAgICAgICAgICAgY29sb255X2hlaWdodF9tID0gIm4iLAogICAgICAgICAgICAgICAgY29sb255X3dpZHRoMSA9ICJuIiwKICAgICAgICAgICAgICAgIGNvbG9ueV93aWR0aDIgPSAibiIKICAgICAgICAgICAgICApKSAlPiUgCiAgICAgICAgICAjdGhpcyBvcHRpb25hbGx5IGNoYW5nZXMgYWxsIGNvbHVtbnMgdGhhdCBzdGFydCB3aXRoICJiaW5hcnkiIHRvIGxvZ2ljYWwgKFQvRikgaW5zdGVhZCBvZiB5L24KICAgICAgICAgICNtdXRhdGUoYWNyb3NzKHN0YXJ0c193aXRoKCJiaW5hcnkiKSwgZnVuY3Rpb24oeCl7eCA9PSAieSJ9CiAgICAgICAgICAjICAgICAgICAgICAgICApKSAKICAgICAgICAgICMgeW91IG1heSB3YW50IHRvIGNvbnRpbnVlIGNsZWFuaW5nIHRoZSBkYXRhIGluIHRoaXMgaW1wb3J0IHBpcGVsaW5lIHN0YXRlbWVudCwgCiAgICAgICAgICAjIGxpa2UgY2hhbmdpbmcgb3RoZXIgeS9uIGNvbHVtbnMgdG8gbG9naWNhbCAgICAgICAgICAgICAgICAgICAgCmBgYAoKIyBDbGVhbiB0aGUgRGF0YQoKCiMgU3BsaXQgdGhlIGRhdGEgaW50byBHRU9NRSB0YWJsZXMKCk5vdyB5b3UnbGwgbmVlZCB0byBzcGxpdCB0aGUgY29sdW1ucyBpbnRvIHRoZSBmb3VyIHRhYmxlcyB0aGF0IEdFT01FIHVzZXM6IGV2ZW50cywgc2FtcGxlcywgdGlzc3VlcywgYW5kIGRpYWdub3N0aWNzICAKCllvdSBjYW4gZm9sbG93IHdoYXQgSSBzcGVjaWZpZWQgaW4gR0NNUF9FTVBfbWFwX3IyOV9FREMueGxzeCAoZ3JlZW4gPSBldmVudHMsIGJsdWUgPSBzYW1wbGVzLCB5ZWxsb3cgPSB0aXNzdWVzLCBvcmFuZ2UgPSBkaWFnbm9zdGljcykKClN0aWxsLCBzb21lIGRlY2lzaW9ucyBuZWVkIHRvIGJlIG1hZGUgYWJvdXQgd2hhdCBnZXRzIGluY2x1ZGVkIGluIEdFT01FIG9yIG5vdC4gWFhYWFggbWVhbnMgSSB0aGluayBpdCAKc2hvdWxkbid0IGJlIGluY2x1ZGVkLCA/Pz8/IG1lYW5zIEkgZG9uJ3Qga25vdyB5b3Ugc2hvdWxkIGFzayBvciBmaW5kIGEgZGFyd2luQ29yZSB0ZXJtLCBhbmQgdGhlbiBJIG1hZGUgbm8gZGVjaXNpb25zCnBhc3QgZmFtaWx5IChjb2x1bW4gQ1UpCgpgYGB7cn0KZXZlbnRzIDwtIGRmICU+JSBzZWxlY3QoY29sbGVjdGlvbl9pZCxkYXRlLHJlZWZfbmFtZSwgY29sbGVjdGlvbl90aW1lLCBsYXRpdHVkZSwgbG9uZ2l0dWRlLCBzdWJzdHJhdGUsIGRlcHRoKQpzYW1wbGVzIDwtIGRmICU+JSBibGFoLgoKCgoKYGBgCgojIFJlbmFtZSBhbmQgY29udmVydAoKTm93IHlvdSBuZWVkIHRvIHJlbmFtZSBhbmQvb3IgY29udmVydCBhbnkgZGF0YSBpbnRvIEdFT01FIGZvcm1hdAoKYGBge3J9CmV2ZW50cyA8LSBldmVudHMgJT4lIHJlbmFtZShldmVudElEID0gY29sbGVjdGlvbl9pZCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxvY2F0aW9uUmVtYXJrcyA9IHJlZWZfbmFtZSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpbWVPZkRheSA9IGNvbGxlY3Rpb25fdGltZSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRlY2ltYWxMb25naXR1ZGUgPSBsb25naXR1ZGUsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBkZWNpbWFsTGF0aXR1ZGUgPSBsYXRpdHVkZSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN1YnN0cmF0dW0gPSBzdWJzdHJhdGUsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBtYXhpbXVtRGVwdGhJbk1ldGVycyA9IGRlcHRoKSAlPiUgbXV0YXRlKGNvbGxlY3Rpb25EYXkgPSBkYXkoZGF0ZSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbGxlY3Rpb25Nb250aCA9IG1vbnRoKGRhdGUpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2xsZWN0aW9uWWVhciA9IHllYXIoZGF0ZSkpICU+JQogICAgICAgICAgICAgIHNlbGVjdCgtZGF0ZSkKCgoKYGBgCgojIERlZHVwbGljYXRlCgpIZXJlIGlzIHdoZXJlIHlvdSdsbCBtYWtlIHRoZSBkYXRhIG1vcmUgZWZmaWNpZW50LCBpbnRvIFtGaXJzdCBOb3JtYWwgRm9ybV0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRmlyc3Rfbm9ybWFsX2Zvcm0pLCAKYnkgcmVtb3ZpbmcgZHVwbGljYXRlIGVudHJpZXMgaW4gdGhlIGV2ZW50cyBhbmQgc2FtcGxlcyB0YWJsZXMuCgpDdXJyZW50bHkgY29uc3VsdGluZyB3aXRoIEpvaG4gRGVjayBhYm91dCBtb3Zpbmcgc3Vic3RyYXR1bSBhbmQgZGVwdGggdG8gdGhlIFNhbXBsZSB0YWJsZSwgcmF0aGVyIHRoYW4gZXZlbnRzLi4uCgpgYGB7cn0KZGltKGV2ZW50cykKZXZlbnRzIDwtIGV2ZW50cyAlPiUgZGlzdGluY3QoKQoKZGltKGV2ZW50cykKCmBgYAoKCiMgU3BsaXQgaW50byBFeHBlZGl0aW9ucwoKVGhlcmUgd2VyZSAxMSBvciAxNCBHQ01QIGV4cGVkaXRpb25zLCBhbmQgd2UgbmVlZCB0byBzcGxpdCB0aGVzZSBjb25jYXRlbmF0ZWQgZGF0YSBiYWNrIGludG8gdGhlaXIgY29uc3RpdHVlbnQgZXhwZWRpdGlvbnMuCgpgYGB7cn0KRTEgPC0gZGYgJT4lIG11dGF0ZShleHBlZGl0aW9uID0gc3RyX21hdGNoKFNhbXBsZUlELCIxMDg5NVxcLihFXFxkKykiKVssMl0sIC5iZWZvcmUgPSBzYW1wbGVfbmFtZV9iYWNrdXApICU+JSAKICAgICAgICBmaWx0ZXIoZXhwZWRpdGlvbiA9PSAiRTEiKQogIAoKYGBgCgojIFZhbGlkYXRlCgpZb3UnbGwgd2FudCB0byB1c2UgZHBseXIgbGVmdF9qb2luKCkgaGVyZSBhbmQgc29tZSBzb3J0IG9mIGRpZmYgZnVuY3Rpb24gdG8gc2VlIGlmIHlvdSBjYW4gZXhhY3RseSByZWNvbnN0cnVjdCB0aGUgZGF0YXNldCBmcm9tIHRoZXNlIGRlLWR1cGxpY2F0ZWQgdGFibGVzCgoKCiMgV3JpdGUgdG8gRXhjZWwgVGVtcGxhdGUKCllvdSdsbCB3YW50IHRvIHVzZSB0aGUgYHdyaXRlLnhsc3goKWAgZnVuY3Rpb24gaW4gdGhlIHhsc3ggcGFja2FnZSB0byB3cml0ZSBlYWNoIHRhYmxlIHRvIHRoZSBgR2xvYmFsIENvcmFsIE1pY3JvYmlvbWUgUHJvamVjdC54bHN4YCBHRU9NRSB0ZW1wbGF0ZSBpbiB0aGUgd29ya2luZyBkaXJlY3Rvcnku</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ3Jvc3N3YWxraW5nIEdsb2JhbCBDb3JhbCBNaWNyb2Jpb21lIERhdGEgKEdDTVApIGludG8gdGhlIEdlbm9taWMgT2JzZXJ2YXRvcmllcyBNZXRhZGF0YWJhc2UgKEdFT01FKSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBJbnRyb2R1Y3Rpb24KClRoaXMgbm90ZWJvb2sgZG9jdW1lbnRzIHRoZSBjb2RlIHVzZWQgdG8gdHJhbnNsYXRlIHRoZSBHbG9iYWwgQ29yYWwgTWljcm9iaW9tZSBQcm9qZWN0J3MgKEdDTVApIGNvbGxhdGVkIG1ldGFkYXRhIChwcm92aWRlZCBieSBKZXNzZSBaYW5ldmVsZCkgaW50byBhIGZvcm1hdCB0aGF0IEdFT01FIGNhbiBpbmdlc3QuIFdlIGFyZSBob3BpbmcgdG8gc2hhcmUgdGhlIEdDTVAgbWV0YWRhdGEgb24gR0VPTUUgYW5kIGZvciB0aGlzIHRvIGJlIGEgdXNlLWNhc2UgdG8gaGVscCBpbXByb3ZlIEdFT01FJ3MgYWJpbGl0eSB0byBzdG9yZSBtaWNyb2Jpb21lIG1ldGFkYXRhLgoKVGhlIG1ldGFkYXRhIHByb3ZpZGVkIGJ5IEplc3NlIGFyZSBpbiBgR0NNUF9FTVBfbWFwX3IyOS50eHRgLiBUaGUgdGVtcGxhdGUgdG8gd2hpY2ggd2Ugd2FudCB0byB3cml0ZSB0aGUgZGF0YSBpcyBpbiBgR2xvYmFsIENvcmFsIE1pY3JvYmlvbWUgUHJvamVjdC54bHN4YAoKIyBTZXR1cAoKYGBge3Igc2V0dXB9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGx1YnJpZGF0ZSkKbGlicmFyeSh4bHN4KQoKYGBgCgojIEltcG9ydGluZyB0aGUgZGF0YQoKYGBge3J9Cgp5X29yX24gPC0gZnVuY3Rpb24oeCl7CiAgeCA9PSAieSIKfQoKZGYgPC0gcmVhZF90c3YoZmlsZSA9ICJHQ01QX0VNUF9tYXBfcjI5LnR4dCIsIG5hID0gYygiIiwiTkEiLCJuYSIsIk5vdCBBcHBsaWNhYmxlIiksCiAgICAgICAgICAgICAgY29sX3R5cGVzID0gY29scygKICAgICAgICAgICAgICAgIGRhdGUgPSBjb2xfZGF0ZShmb3JtYXQgPSAiJW0vJWQvJXkiKSwKICAgICAgICAgICAgICAgIGRlcHRoID0gIm4iLAogICAgICAgICAgICAgICAgdGVtcGVyYXR1cmUgPSAibiIsCiAgICAgICAgICAgICAgICBzdXJmYWNlX3RlbXBlcmF0dXJlID0gIm4iLAogICAgICAgICAgICAgICAgY29sb255X2hlaWdodF9tID0gIm4iLAogICAgICAgICAgICAgICAgY29sb255X3dpZHRoMSA9ICJuIiwKICAgICAgICAgICAgICAgIGNvbG9ueV93aWR0aDIgPSAibiIKICAgICAgICAgICAgICApKSAKICAgICAgICAgICN0aGlzIG9wdGlvbmFsbHkgY2hhbmdlcyBhbGwgY29sdW1ucyB0aGF0IHN0YXJ0IHdpdGggImJpbmFyeSIgdG8gbG9naWNhbCAoVC9GKSBpbnN0ZWFkIG9mIHkvbgogICAgICAgICAgI211dGF0ZShhY3Jvc3Moc3RhcnRzX3dpdGgoImJpbmFyeSIpLCBmdW5jdGlvbih4KXt4ID09ICJ5In0KICAgICAgICAgICMgICAgICAgICAgICAgICkpIAogICAgICAgICAgIyB5b3UgbWF5IHdhbnQgdG8gY29udGludWUgY2xlYW5pbmcgdGhlIGRhdGEgaW4gdGhpcyBpbXBvcnQgcGlwZWxpbmUgc3RhdGVtZW50LCAKICAgICAgICAgICMgbGlrZSBjaGFuZ2luZyBvdGhlciB5L24gY29sdW1ucyB0byBsb2dpY2FsICAKICAKIyBDaGVjayBjb2x1bW4gY2xhc3MKc3VtbWFyeT1zYXBwbHkoZGYsIGNsYXNzKQp3cml0ZS5jc3Yoc3VtbWFyeSwgInN1bW1hcnktdGFibGUtY2xhc3MuY3N2IikKYGBgCgojIENsZWFuIHRoZSBEYXRhCgoKIyBTcGxpdCB0aGUgZGF0YSBpbnRvIEdFT01FIHRhYmxlcwoKTm93IHlvdSdsbCBuZWVkIHRvIHNwbGl0IHRoZSBjb2x1bW5zIGludG8gdGhlIGZvdXIgdGFibGVzIHRoYXQgR0VPTUUgdXNlczogZXZlbnRzLCBzYW1wbGVzLCB0aXNzdWVzLCBhbmQgZGlhZ25vc3RpY3MgIAoKWW91IGNhbiBmb2xsb3cgd2hhdCBJIHNwZWNpZmllZCBpbiBHQ01QX0VNUF9tYXBfcjI5X0VEQy54bHN4IChncmVlbiA9IGV2ZW50cywgYmx1ZSA9IHNhbXBsZXMsIHllbGxvdyA9IHRpc3N1ZXMsIG9yYW5nZSA9IGRpYWdub3N0aWNzKQoKU3RpbGwsIHNvbWUgZGVjaXNpb25zIG5lZWQgdG8gYmUgbWFkZSBhYm91dCB3aGF0IGdldHMgaW5jbHVkZWQgaW4gR0VPTUUgb3Igbm90LiBYWFhYWCBtZWFucyBJIHRoaW5rIGl0IApzaG91bGRuJ3QgYmUgaW5jbHVkZWQsID8/Pz8gbWVhbnMgSSBkb24ndCBrbm93IHlvdSBzaG91bGQgYXNrIG9yIGZpbmQgYSBkYXJ3aW5Db3JlIHRlcm0sIGFuZCB0aGVuIEkgbWFkZSBubyBkZWNpc2lvbnMKcGFzdCBmYW1pbHkgKGNvbHVtbiBDVSkKCmBgYHtyfQpldmVudHMgPC0gZGYgJT4lIHNlbGVjdChjb2xsZWN0aW9uX2lkLGRhdGUscmVlZl9uYW1lLCBjb2xsZWN0aW9uX3RpbWUsIGxhdGl0dWRlLCBsb25naXR1ZGUsIHN1YnN0cmF0ZSwgZGVwdGgpCnNhbXBsZXMgPC0gZGYgJT4lIGJsYWguCgoKCgpgYGAKCiMgUmVuYW1lIGFuZCBjb252ZXJ0CgpOb3cgeW91IG5lZWQgdG8gcmVuYW1lIGFuZC9vciBjb252ZXJ0IGFueSBkYXRhIGludG8gR0VPTUUgZm9ybWF0CgpgYGB7cn0KZXZlbnRzIDwtIGV2ZW50cyAlPiUgcmVuYW1lKGV2ZW50SUQgPSBjb2xsZWN0aW9uX2lkLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgbG9jYXRpb25SZW1hcmtzID0gcmVlZl9uYW1lLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGltZU9mRGF5ID0gY29sbGVjdGlvbl90aW1lLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgZGVjaW1hbExvbmdpdHVkZSA9IGxvbmdpdHVkZSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRlY2ltYWxMYXRpdHVkZSA9IGxhdGl0dWRlLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgc3Vic3RyYXR1bSA9IHN1YnN0cmF0ZSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1heGltdW1EZXB0aEluTWV0ZXJzID0gZGVwdGgpICU+JSBtdXRhdGUoY29sbGVjdGlvbkRheSA9IGRheShkYXRlKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sbGVjdGlvbk1vbnRoID0gbW9udGgoZGF0ZSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbGxlY3Rpb25ZZWFyID0geWVhcihkYXRlKSkgJT4lCiAgICAgICAgICAgICAgc2VsZWN0KC1kYXRlKQoKCgpgYGAKCiMgRGVkdXBsaWNhdGUKCkhlcmUgaXMgd2hlcmUgeW91J2xsIG1ha2UgdGhlIGRhdGEgbW9yZSBlZmZpY2llbnQsIGludG8gW0ZpcnN0IE5vcm1hbCBGb3JtXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9GaXJzdF9ub3JtYWxfZm9ybSksIApieSByZW1vdmluZyBkdXBsaWNhdGUgZW50cmllcyBpbiB0aGUgZXZlbnRzIGFuZCBzYW1wbGVzIHRhYmxlcy4KCkN1cnJlbnRseSBjb25zdWx0aW5nIHdpdGggSm9obiBEZWNrIGFib3V0IG1vdmluZyBzdWJzdHJhdHVtIGFuZCBkZXB0aCB0byB0aGUgU2FtcGxlIHRhYmxlLCByYXRoZXIgdGhhbiBldmVudHMuLi4KCmBgYHtyfQpkaW0oZXZlbnRzKQpldmVudHMgPC0gZXZlbnRzICU+JSBkaXN0aW5jdCgpCgpkaW0oZXZlbnRzKQoKYGBgCgoKIyBTcGxpdCBpbnRvIEV4cGVkaXRpb25zCgpUaGVyZSB3ZXJlIDExIG9yIDE0IEdDTVAgZXhwZWRpdGlvbnMsIGFuZCB3ZSBuZWVkIHRvIHNwbGl0IHRoZXNlIGNvbmNhdGVuYXRlZCBkYXRhIGJhY2sgaW50byB0aGVpciBjb25zdGl0dWVudCBleHBlZGl0aW9ucy4KCmBgYHtyfQpFMSA8LSBkZiAlPiUgbXV0YXRlKGV4cGVkaXRpb24gPSBzdHJfbWF0Y2goU2FtcGxlSUQsIjEwODk1XFwuKEVcXGQrKSIpWywyXSwgLmJlZm9yZSA9IHNhbXBsZV9uYW1lX2JhY2t1cCkgJT4lIAogICAgICAgIGZpbHRlcihleHBlZGl0aW9uID09ICJFMSIpCiAgCgpgYGAKCiMgVmFsaWRhdGUKCllvdSdsbCB3YW50IHRvIHVzZSBkcGx5ciBsZWZ0X2pvaW4oKSBoZXJlIGFuZCBzb21lIHNvcnQgb2YgZGlmZiBmdW5jdGlvbiB0byBzZWUgaWYgeW91IGNhbiBleGFjdGx5IHJlY29uc3RydWN0IHRoZSBkYXRhc2V0IGZyb20gdGhlc2UgZGUtZHVwbGljYXRlZCB0YWJsZXMKCgoKIyBXcml0ZSB0byBFeGNlbCBUZW1wbGF0ZQoKWW91J2xsIHdhbnQgdG8gdXNlIHRoZSBgd3JpdGUueGxzeCgpYCBmdW5jdGlvbiBpbiB0aGUgeGxzeCBwYWNrYWdlIHRvIHdyaXRlIGVhY2ggdGFibGUgdG8gdGhlIGBHbG9iYWwgQ29yYWwgTWljcm9iaW9tZSBQcm9qZWN0Lnhsc3hgIEdFT01FIHRlbXBsYXRlIGluIHRoZSB3b3JraW5nIGRpcmVjdG9yeS4=</div>
 
 
 

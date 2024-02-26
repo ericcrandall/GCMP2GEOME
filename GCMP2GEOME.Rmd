@@ -35,12 +35,16 @@ df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = c("","NA","na","Not Applicabl
                 colony_height_m = "n",
                 colony_width1 = "n",
                 colony_width2 = "n"
-              )) %>% 
+              )) 
           #this optionally changes all columns that start with "binary" to logical (T/F) instead of y/n
           #mutate(across(starts_with("binary"), function(x){x == "y"}
           #              )) 
           # you may want to continue cleaning the data in this import pipeline statement, 
-          # like changing other y/n columns to logical                    
+          # like changing other y/n columns to logical  
+  
+# Check column class
+summary=sapply(df, class)
+write.csv(summary, "summary-table-class.csv")
 ```
 
 # Clean the Data
