@@ -1782,39 +1782,56 @@ library(xlsx)
 <h1>Importing the data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG55X29yX24gPC0gZnVuY3Rpb24oeCl7XG4gIHggPT0gXCJ5XCJcbn1cblxuZGYgPC0gcmVhZF90c3YoZmlsZSA9IFwiR0NNUF9FTVBfbWFwX3IyOS50eHRcIiwgbmEgPSBjKFwiXCIsXCJOQVwiLFwibmFcIixcIk5vdCBBcHBsaWNhYmxlXCIpLFxuICAgICAgICAgICAgICBjb2xfdHlwZXMgPSBjb2xzKFxuICAgICAgICAgICAgICAgIGRhdGUgPSBjb2xfZGF0ZShmb3JtYXQgPSBcIiVtLyVkLyV5XCIpLFxuICAgICAgICAgICAgICAgIGRlcHRoID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgdGVtcGVyYXR1cmUgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBzdXJmYWNlX3RlbXBlcmF0dXJlID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgY29sb255X2hlaWdodF9tID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgY29sb255X3dpZHRoMSA9IFwiblwiLFxuICAgICAgICAgICAgICAgIGNvbG9ueV93aWR0aDIgPSBcIm5cIlxuICAgICAgICAgICAgICApKSBcbmBgYCJ9 -->
-<pre class="r"><code>
-y_or_n &lt;- function(x){
-  x == &quot;y&quot;
-}
-
-df &lt;- read_tsv(file = &quot;GCMP_EMP_map_r29.txt&quot;, na = c(&quot;&quot;,&quot;NA&quot;,&quot;na&quot;,&quot;Not Applicable&quot;),
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgPC0gcmVhZF90c3YoZmlsZSA9IFwiR0NNUF9FTVBfbWFwX3IyOS50eHRcIiwgbmEgPSBjKFwiXCIsXCJOQVwiLFwibmFcIixcIk5vdCBBcHBsaWNhYmxlXCIpLFxuICAgICAgICAgICAgICBjb2xfdHlwZXMgPSBjb2xzKFxuICAgICAgICAgICAgICAgIGRhdGUgPSBjb2xfZGF0ZShmb3JtYXQgPSBcIiVtLyVkLyV5XCIpLFxuICAgICAgICAgICAgICAgIGRlcHRoID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgdGVtcGVyYXR1cmUgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBzdXJmYWNlX3RlbXBlcmF0dXJlID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgcGhvdG9zeW50aGV0aWNhbGx5X2FjdGl2ZV9yYWRpYXRpb24gPSBcIm5cIixcbiAgICAgICAgICAgICAgICBjb2xvbnlfaGVpZ2h0X20gPSBcIm5cIixcbiAgICAgICAgICAgICAgICBjb2xvbnlfd2lkdGgxID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgY29sb255X3dpZHRoMiA9IFwiblwiLFxuICAgICAgICAgICAgICAgIHRpc3N1ZV9sb3NzX3BlcmNlbnQgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBkaXNlYXNlX3BlcmNlbnQgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBjeWFub2JhY3RlcmlhX3BlcmNlbnQgPSBcIm5cIixcbiAgICAgICAgICAgICAgICB0dXJmX2NvbnRhY3RfcGVyY2VudCA9IFwiblwiLFxuICAgICAgICAgICAgICAgIG5fYWxnYWxfY29udGFjdHMgPSBcImlcIixcbiAgICAgICAgICAgICAgICBuX21hY3JvYWxnYWxfY29udGFjdHMgPSBcImlcIixcbiAgICAgICAgICAgICAgICBjY2FfY29udGFjdF9wZXJjZW50ID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgVEFYT05fSUQgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBDb2xvbnkubWF4aW11bS5kaWFtZXRlciA9IFwiblwiLFxuICAgICAgICAgICAgICAgIENvcmFsbGl0ZS53aWR0aC5tYXhpbXVtID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgQ29yYWxsaXRlLndpZHRoLm1pbmltdW0gPSBcIm5cIixcbiAgICAgICAgICAgICAgICBEZXB0aC5sb3dlciA9IFwiblwiLFxuICAgICAgICAgICAgICAgIERlcHRoLnVwcGVyID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgRWFzdGVybi5tb3N0LnJhbmdlLmVkZ2UgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBHZW51cy5mb3NzaWwuYWdlID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgTm9ydGhlcm4ubW9zdC5yYW5nZS5lZGdlID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgT29jeXRlLnNpemUuYXQubWF0dXJpdHkgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBQcm9wYWd1bGUuc2l6ZS5vbi5yZWxlYXNlLm1heCA9IFwiblwiLFxuICAgICAgICAgICAgICAgIFByb3BhZ3VsZS5zaXplLm9uLnJlbGVhc2UubWVhbiA9IFwiblwiLFxuICAgICAgICAgICAgICAgIFJhbmdlLnNpemUgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBTa2VsZXRhbC5kZW5zaXR5ID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgU291dGhlcm4ubW9zdC5yYW5nZS5lZGdlID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgU3BlY2llcy5hZ2UucGh5bG9nZW55ID0gXCJuXCIsXG4gICAgICAgICAgICAgICAgV2VzdGVybi5tb3N0LnJhbmdlLmVkZ2UgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBwcm9wX0NvbG9ueV9tYXhpbXVtX0dDTVBfcmVjb3JkZWQgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBwcm9wX0NvbG9ueV9tYXhpbXVtX2RpYW1ldGVyX3VuaXZlcnNhbCA9IFwiblwiLFxuICAgICAgICAgICAgICAgIHByb3BfQ29sb255X21heGltdW1fZGlhbWV0ZXIgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBDb2xvbnlfbWF4aW11bV9kaWFtZXRlciA9IFwiblwiLFxuICAgICAgICAgICAgICAgIENvbG9ueV9tYXhpbXVtX0dDTVBfcmVjb3JkZWQgPSBcIm5cIixcbiAgICAgICAgICAgICAgICBDb2xvbnlfbWF4aW11bV9kaWFtZXRlcl91bml2ZXJzYWwgPSBcIm5cIixcbiAgICAgICAgICAgICAgICB2aXNpYmlsaXR5ID0gXCJuXCJcbiAgICAgICAgICAgICAgKSkgXG5cbmBgYCJ9 -->
+<pre class="r"><code>df &lt;- read_tsv(file = &quot;GCMP_EMP_map_r29.txt&quot;, na = c(&quot;&quot;,&quot;NA&quot;,&quot;na&quot;,&quot;Not Applicable&quot;),
               col_types = cols(
                 date = col_date(format = &quot;%m/%d/%y&quot;),
                 depth = &quot;n&quot;,
                 temperature = &quot;n&quot;,
                 surface_temperature = &quot;n&quot;,
+                photosynthetically_active_radiation = &quot;n&quot;,
                 colony_height_m = &quot;n&quot;,
                 colony_width1 = &quot;n&quot;,
-                colony_width2 = &quot;n&quot;
-              )) </code></pre>
+                colony_width2 = &quot;n&quot;,
+                tissue_loss_percent = &quot;n&quot;,
+                disease_percent = &quot;n&quot;,
+                cyanobacteria_percent = &quot;n&quot;,
+                turf_contact_percent = &quot;n&quot;,
+                n_algal_contacts = &quot;i&quot;,
+                n_macroalgal_contacts = &quot;i&quot;,
+                cca_contact_percent = &quot;n&quot;,
+                TAXON_ID = &quot;n&quot;,
+                Colony.maximum.diameter = &quot;n&quot;,
+                Corallite.width.maximum = &quot;n&quot;,
+                Corallite.width.minimum = &quot;n&quot;,
+                Depth.lower = &quot;n&quot;,
+                Depth.upper = &quot;n&quot;,
+                Eastern.most.range.edge = &quot;n&quot;,
+                Genus.fossil.age = &quot;n&quot;,
+                Northern.most.range.edge = &quot;n&quot;,
+                Oocyte.size.at.maturity = &quot;n&quot;,
+                Propagule.size.on.release.max = &quot;n&quot;,
+                Propagule.size.on.release.mean = &quot;n&quot;,
+                Range.size = &quot;n&quot;,
+                Skeletal.density = &quot;n&quot;,
+                Southern.most.range.edge = &quot;n&quot;,
+                Species.age.phylogeny = &quot;n&quot;,
+                Western.most.range.edge = &quot;n&quot;,
+                prop_Colony_maximum_GCMP_recorded = &quot;n&quot;,
+                prop_Colony_maximum_diameter_universal = &quot;n&quot;,
+                prop_Colony_maximum_diameter = &quot;n&quot;,
+                Colony_maximum_diameter = &quot;n&quot;,
+                Colony_maximum_GCMP_recorded = &quot;n&quot;,
+                Colony_maximum_diameter_universal = &quot;n&quot;,
+                visibility = &quot;n&quot;
+              )) 
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogT25lIG9yIG1vcmUgcGFyc2luZyBpc3N1ZXMsIGNhbGwgYHByb2JsZW1zKClgIG9uIHlvdXIgZGF0YSBmcmFtZSBmb3IgZGV0YWlscywgZS5nLjpcbiAgZGF0IDwtIHZyb29tKC4uLilcbiAgcHJvYmxlbXMoZGF0KVxuIn0= -->
 <pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
   dat &lt;- vroom(...)
   problems(dat)</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICAgICAgICAgICN0aGlzIG9wdGlvbmFsbHkgY2hhbmdlcyBhbGwgY29sdW1ucyB0aGF0IHN0YXJ0IHdpdGggXCJiaW5hcnlcIiB0byBsb2dpY2FsIChUL0YpIGluc3RlYWQgb2YgeS9uXG4gICAgICAgICAgI211dGF0ZShhY3Jvc3Moc3RhcnRzX3dpdGgoXCJiaW5hcnlcIiksIGZ1bmN0aW9uKHgpe3ggPT0gXCJ5XCJ9XG4gICAgICAgICAgIyAgICAgICAgICAgICAgKSkgXG4gICAgICAgICAgIyB5b3UgbWF5IHdhbnQgdG8gY29udGludWUgY2xlYW5pbmcgdGhlIGRhdGEgaW4gdGhpcyBpbXBvcnQgcGlwZWxpbmUgc3RhdGVtZW50LCBcbiAgICAgICAgICAjIGxpa2UgY2hhbmdpbmcgb3RoZXIgeS9uIGNvbHVtbnMgdG8gbG9naWNhbCAgXG4gIFxuIyBDaGVjayBjb2x1bW4gY2xhc3NcbnN1bW1hcnk9c2FwcGx5KGRmLCBjbGFzcylcbndyaXRlLmNzdihzdW1tYXJ5LCBcInN1bW1hcnktdGFibGUtY2xhc3MuY3N2XCIpXG5gYGAifQ== -->
-<pre class="r"><code>          #this optionally changes all columns that start with &quot;binary&quot; to logical (T/F) instead of y/n
-          #mutate(across(starts_with(&quot;binary&quot;), function(x){x == &quot;y&quot;}
-          #              )) 
-          # you may want to continue cleaning the data in this import pipeline statement, 
-          # like changing other y/n columns to logical  
-  
-# Check column class
-summary=sapply(df, class)
-write.csv(summary, &quot;summary-table-class.csv&quot;)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
