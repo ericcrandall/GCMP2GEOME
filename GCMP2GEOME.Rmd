@@ -32,9 +32,17 @@ df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = c("","NA","na","Not Applicabl
                 depth = "n",
                 temperature = "n",
                 surface_temperature = "n",
+                photosynthetically_active_radiation = "n",
                 colony_height_m = "n",
                 colony_width1 = "n",
-                colony_width2 = "n"
+                colony_width2 = "n",
+                tissue_loss_percent = "n",
+                disease_percent = "n",
+                cyanobacteria_percent = "n",
+                turf_contact_percent = "n",
+                n_algal_contacts = "i",
+                n_macroalgal_contacts = "i",
+                cca_contact_percent = "n"
               )) 
           #this optionally changes all columns that start with "binary" to logical (T/F) instead of y/n
           #mutate(across(starts_with("binary"), function(x){x == "y"}
