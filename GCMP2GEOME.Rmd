@@ -42,7 +42,31 @@ df <- read_tsv(file = "GCMP_EMP_map_r29.txt", na = c("","NA","na","Not Applicabl
                 turf_contact_percent = "n",
                 n_algal_contacts = "i",
                 n_macroalgal_contacts = "i",
-                cca_contact_percent = "n"
+                cca_contact_percent = "n",
+                TAXON_ID = "n",
+                Colony.maximum.diameter = "n",
+                Corallite.width.maximum = "n",
+                Corallite.width.minimum = "n",
+                Depth.lower = "n",
+                Depth.upper = "n",
+                Eastern.most.range.edge = "n",
+                Genus.fossil.age = "n",
+                Northern.most.range.edge = "n",
+                Oocyte.size.at.maturity = "n",
+                Propagule.size.on.release.max = "n",
+                Propagule.size.on.release.mean = "n",
+                Range.size = "n",
+                Skeletal.density = "n",
+                Southern.most.range.edge = "n",
+                Species.age.phylogeny = "n",
+                Western.most.range.edge = "n",
+                prop_Colony_maximum_GCMP_recorded = "n",
+                prop_Colony_maximum_diameter_universal = "n",
+                prop_Colony_maximum_diameter = "n",
+                Colony_maximum_diameter = "n",
+                Colony_maximum_GCMP_recorded = "n",
+                Colony_maximum_diameter_universal = "n",
+                visibility = "n"
               )) 
           #this optionally changes all columns that start with "binary" to logical (T/F) instead of y/n
           #mutate(across(starts_with("binary"), function(x){x == "y"}
