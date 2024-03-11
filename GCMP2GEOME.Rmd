@@ -280,14 +280,53 @@ events <- events %>% rename(SampleID = tissueID,
                             full_taxonomy_string_with_clade = taxonomyPhylaANDtaxonomyClassANDtaxonomyOrderANDtaxonomyCladeANDgenusANDspecificEpithet,                           taxonomy_string_to_clade = taxonomyPhylaANDtaxonomyClassANDtaxonomyOrderANDtaxonomyClade,
                             taxonomy_string_to_family = taxonomyPhylaANDtaxonomyClassANDtaxonomyOrderANDtaxonomyFamily,
                             taxonomy_string_to_order = taxonomyPhylaANDtaxonomyClassANDtaxonomyOrder,
-                            taxonomy_string_to_subclass = taxonomyPhylaANDtaxonomyClassANDtaxonomySubclas,
-                            
-                            ) %>% mutate(collectionDay = day(date),
-                                                                     collectionMonth = month(date),
-                                                                     collectionYear = year(date)) %>%
-              select(-date)
-
-
+                            taxonomy_string_to_subclass = taxonomyPhylaANDtaxonomyClassANDtaxonomySubclass,
+                            taxonomy_string_to_class = taxonomyPhylaANDtaxonomyClass,
+                            complex_robust = higherClassificationANDnamePublishedIn,
+                            family = family,
+                            common_name = vernacularName,
+                            corallite_type = coralliteType,
+                            calcifies = calcifies,#
+                            species_notes = speciesNotes,
+                            functional_group_sensu_darling = funtionalEcology,
+                            Abundance.GBR = abundanceGBR, #
+                            Abundance.world = abundanceWorld,#
+                            Coloniality = coloniality, #
+                            Colony.maximum.diameter = colonyMaximumDiameterInCentimeters,#
+                            Corallite.width.maximum = coralliteMaximumWidthInMillimeters,#
+                            Corallite.width.minimum = coralliteMinimumWidthInMillimeters,#
+                            Genus.fossil.age = genusFossilAgeInMYA,#
+                            Growth.form.typical = growthFormTypical,#
+                            IUCN.Red.List.category = IUCNRedListCategory,#
+                            Mode.of.larval.development = modeOfLarvalDevelopment,#
+                            Oocyte.size.at.maturity = oocyteSizeAtMaturityInMicrometers,#
+                            Propagule.size.on.release.max = maxPropaguleSizeOnReleaseInMicrometers,#
+                            Propagule.size.on.release.mean = meanPropaguleSizeOnReleaseInMicrometers,#
+                            Range.size = rangeSizeInSquareKilometers,#
+                            Sexual.system = sexualSystem,#
+                            Skeletal.density = skeletalDensityInGramsPerCubicCentimeter,#
+                            Species.age.phylogeny = speciesAgePhylogenyInMYA,#
+                            Substrate.attachment = substrateAttachment,#
+                            Wave.exposure.preference = waveExposurePreference,#
+                            Zooxanthellate = symbioticAposymbiotic,#
+                            Colony_maximum_GCMP_recorded = colonyDiameterInCentimeters,#
+                            reef_type = fieldNotes,
+                            shelf_location = shelfLocation,
+                            site_name = locality,
+                            geographic_area = cardinalLocation,
+                            ocean_area = waterBody,
+                            ocean = oceanBasin,
+                            ocean_superregion = oceanSuperregion,
+                            sampling_expedition = expeditionTitle,
+                            country = country,
+                            collected_by = collectorList,
+                            visibility = visibilityInMeters,
+                            visibility_method = visibilityMethod,
+                            Description = occurenceRemarks) %>% 
+      mutate(collectionDay = day(date),
+      collectionMonth = month(date),
+      collectionYear = year(date)) %>%
+      select(-date)
 
 ```
 
