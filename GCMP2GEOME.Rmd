@@ -99,6 +99,8 @@ Event <- df %>% select(collection_id,
                           collection_time,
                           latitude,
                           longitude,
+                          substrate,
+                          depth,
                           Range.size,
                           reef_type,
                           site_name,
@@ -132,8 +134,6 @@ Sample <- df %>% select(sample_type_EMP,
                           common_name,
                           species_notes,
                           Description)
-
-Sample_or_Event <- df %>% select(substrate, depth) # We were not able to decide whether these two columns fell under Sample or Event. 
 
 Tissue <- df %>% select(SampleID,
                           sample_type)
@@ -218,6 +218,8 @@ Event <- Event %>% rename(locationID = collection_id,
                           timeOfDay = collection_time,
                           decimalLatitude = latitude,
                           decimalLongitude = longitude,
+                          substratum = substrate, 
+                          maximumDepthInMeters = depth,
                           rangeSizeInSquareKilometers = Range.size,###
                           fieldNotes = reef_type,
                           cardinalLocation = geographic_area,
@@ -261,12 +263,6 @@ Sample <- df %>% select("basisOfRecord??" = sample_type_EMP, # Need to finalize 
                           add_column("namePublishedIn" = "https://doi.org/10.11010.XXX.XXSXX | https://doi.org/10.22231.XXX.XXSXX", .after = "higherClassification") %>% # Change to doi for the relevant publications.
                           separate(physical_sample_location, c("principalInvestigator",
                                                                "institutionCode"), sep=",") # Separated physical sample location into principal investigator and institution code, removed institution country.
-
-
-
-
-Sample_or_Event <- Sample_or_Event %>% rename(substratum = substrate, 
-                                              "maximumDepthInMeters OR minimumDepthInMeters" = depth) # minimum or maximum?
 
 
 
