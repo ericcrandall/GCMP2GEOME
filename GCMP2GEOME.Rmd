@@ -262,6 +262,9 @@ Sample <- df %>% select("basisOfRecord??" = sample_type_EMP, # Need to finalize 
                           separate(physical_sample_location, c("principalInvestigator",
                                                                "institutionCode"), sep=",") # Separated physical sample location into principal investigator and institution code, removed institution country.
 
+
+
+
 Sample_or_Event <- Sample_or_Event %>% rename(substratum = substrate, 
                                               "maximumDepthInMeters OR minimumDepthInMeters" = depth) # minimum or maximum?
 
