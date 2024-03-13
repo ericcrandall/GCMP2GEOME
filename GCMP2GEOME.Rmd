@@ -452,6 +452,17 @@ events <- events %>% rename(SampleID = tissueID,
       select(-date)
 #####
 
+# Configure GEOME
+
+1. Check attributes (column names) of each entity (table) in GEOME, revise definitions to match GCMP definitions, include GCMP term in definition
+  a. uncheck any unused fields
+  b. move fields into the order they will appear in template spreadsheets
+  c. for the Diagnostics entity, identify any terms that are not already entered in GEOME and tell Eric so he can tell Joh to add them.
+  d. add "coralColony" to the front of GCMP-specific diagnostics terms
+2. Set up lists of controlled vocabularies
+3. Set up validation rules for various terms as defined in our working spreadsheet
+
+
 # Deduplicate
 
 Here is where you'll make the data more efficient, into [First Normal Form](https://en.wikipedia.org/wiki/First_normal_form), 
