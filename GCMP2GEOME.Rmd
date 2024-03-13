@@ -457,8 +457,6 @@ events <- events %>% rename(SampleID = tissueID,
 Here is where you'll make the data more efficient, into [First Normal Form](https://en.wikipedia.org/wiki/First_normal_form), 
 by removing duplicate entries in the events and samples tables.
 
-Currently consulting with John Deck about moving substratum and depth to the Sample table, rather than events...
-
 ```{r}
 dim(events)
 events <- events %>% distinct()
