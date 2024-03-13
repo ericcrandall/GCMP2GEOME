@@ -237,7 +237,7 @@ Event <- Event %>% rename(locationID = collection_id,
 
 
 
-Sample <- df %>% select("basisOfRecord??" = sample_type_EMP, # Need to finalize if this will be the basis of record.
+Sample <- df %>% select(basisOfRecord = sample_type_EMP, # Need to finalize if this will be the basis of record.
                           physical_sample_location = physical_sample_location,
                           verbatimLabel = local_colony_name,
                           individualID = local_sample_id,
