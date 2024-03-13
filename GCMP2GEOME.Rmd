@@ -237,7 +237,7 @@ Event <- Event %>% rename(locationID = collection_id,
 
 
 
-Sample <- df %>% select("basisOfRecord??" = sample_type_EMP, # Need to finalize if this will be the basis of record.
+Sample <- df %>% select(basisOfRecord = sample_type_EMP, # Need to finalize if this will be the basis of record.
                           physical_sample_location = physical_sample_location,
                           verbatimLabel = local_colony_name,
                           individualID = local_sample_id,
@@ -260,7 +260,7 @@ Sample <- df %>% select("basisOfRecord??" = sample_type_EMP, # Need to finalize 
                           speciesNotes = species_notes,
                           occurenceRemarks = Description) %>% 
                           unite(col="higherClassification", c("Huang_Roy_tree_name", "host_clade_sensu_fukami", "complex_robust"), sep=" | ") %>%
-                          add_column("namePublishedIn" = "https://doi.org/10.11010.XXX.XXSXX | https://doi.org/10.22231.XXX.XXSXX", .after = "higherClassification") %>% # Change to doi for the relevant publications.
+                          add_column("namePublishedIn" = "https://doi.org/10.1098/rstb.2014.0010 | https://doi.org/10.1371/journal.pone.0003222 | https://doi.org/10.1038/sdata.2016.17", .after = "higherClassification") %>% # DOI for the relevant publications referenced for higherClassification.
                           separate(physical_sample_location, c("principalInvestigator",                                                               "institutionCode"), sep=",") %>% # Separated physical sample location into principal investigator and institution code, removed institution country.
                           separate(full_taxonomy_string_with_clade, c("phyla", "class", "order"), sep="_") %>%   # Split the phyla, class, order, etc. into their own separate columns.
                           select(-c("taxonomy_string_to_clade", "taxonomy_string_to_family", "taxonomy_string_to_order", "taxonomy_string_to_subclass", "taxonomy_string_to_class")) # Remove the concatenated versions of taxonomy.
