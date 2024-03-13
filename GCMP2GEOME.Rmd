@@ -249,20 +249,21 @@ Sample <- df %>% select("basisOfRecord??" = sample_type_EMP, # Need to finalize 
                           Huang_Roy_tree_name = Huang_Roy_tree_name,
                           host_clade_sensu_fukami = host_clade_sensu_fukami,
                           complex_robust = complex_robust,
-                          "taxonomyPhyla AND taxonomyClass AND taxonomyOrder AND taxonomyClade AND genus AND specificEpithet" = full_taxonomy_string_with_clade, # Should the phyla, class, order, etc. and all just be split into their own separate columns, and remove the concatenated versions?
-                          "taxonomyPhyla AND taxonomyClass AND taxonomyOrder AND taxonomyClade" = taxonomy_string_to_clade,
-                          "taxonomyPhyla AND taxonomyClass AND taxonomyOrder AND taxonomyFamily" = taxonomy_string_to_family,
-                          "taxonomyPhyla AND taxonomyClass AND taxonomyOrder" = taxonomy_string_to_order,
-                          "taxonomyPhyla AND taxonomyClass AND taxonomySubclass" = taxonomy_string_to_subclass,
-                          "taxonomyPhyla AND taxonomyClass" = taxonomy_string_to_class,
+                          full_taxonomy_string_with_clade = full_taxonomy_string_with_clade, 
+                          taxonomy_string_to_clade = taxonomy_string_to_clade,
+                          taxonomy_string_to_family = taxonomy_string_to_family,
+                          taxonomy_string_to_order = taxonomy_string_to_order,
+                          taxonomy_string_to_subclass = taxonomy_string_to_subclass,
+                          taxonomy_string_to_class = taxonomy_string_to_class,
                           family = family,
                           vernacularName = common_name,
                           speciesNotes = species_notes,
                           occurenceRemarks = Description) %>% 
                           unite(col="higherClassification", c("Huang_Roy_tree_name", "host_clade_sensu_fukami", "complex_robust"), sep=" | ") %>%
                           add_column("namePublishedIn" = "https://doi.org/10.11010.XXX.XXSXX | https://doi.org/10.22231.XXX.XXSXX", .after = "higherClassification") %>% # Change to doi for the relevant publications.
-                          separate(physical_sample_location, c("principalInvestigator",
-                                                               "institutionCode"), sep=",") # Separated physical sample location into principal investigator and institution code, removed institution country.
+                          separate(physical_sample_location, c("principalInvestigator",                                                               "institutionCode"), sep=",") %>% # Separated physical sample location into principal investigator and institution code, removed institution country.
+                          separate(full_taxonomy_string_with_clade, c("phyla", "class", "order"), sep="_") %>%   # Split the phyla, class, order, etc. into their own separate columns.
+                          select(-c("taxonomy_string_to_clade", "taxonomy_string_to_family", "taxonomy_string_to_order", "taxonomy_string_to_subclass", "taxonomy_string_to_class")) # Remove the concatenated versions of taxonomy.
 
 
 
