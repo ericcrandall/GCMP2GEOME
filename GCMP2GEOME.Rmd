@@ -92,122 +92,7 @@ Still, some decisions need to be made about what gets included in GEOME or not. 
 shouldn't be included, ???? means I don't know you should ask or find a darwinCore term, and then I made no decisions
 past family (column CU)
 
-```{r}
-Event <- df %>% select(collection_id,
-                          date,
-                          reef_name,
-                          collection_time,
-                          latitude,
-                          longitude,
-                          substrate,
-                          depth,
-                          Range.size,
-                          reef_type,
-                          site_name,
-                          geographic_area,
-                          ocean_area,
-                          ocean,
-                          ocean_superregion,
-                          country,
-                          collected_by)
 
-Sample <- df %>% select(sample_type_EMP,
-                          physical_sample_location,
-                          physical_sample_location,
-                          local_colony_name,
-                          local_sample_id,
-                          colony_name,
-                          host_scientific_name,
-                          host_genus_id,
-                          host_species_id,
-                          biological_sample_notes,
-                          Huang_Roy_tree_name,
-                          host_clade_sensu_fukami,
-                          full_taxonomy_string_with_clade,
-                          taxonomy_string_to_clade,
-                          taxonomy_string_to_family,
-                          taxonomy_string_to_order,
-                          taxonomy_string_to_subclass,
-                          taxonomy_string_to_class,
-                          complex_robust,
-                          family,
-                          common_name,
-                          species_notes,
-                          Description)
-
-Tissue <- df %>% select(SampleID,
-                          sample_type)
-
-Diagnostics <- df %>% select(temperature,
-                              surface_temperature,
-                              salinity,
-                              oxygen,
-                              photosynthetically_active_radiation,
-                              PAR_method,
-                              contact_description,
-                              colony_height_m,
-                              colony_width1,
-                              colony_width2,
-                              coral_color,
-                              coral_color_additional,
-                              binary_tissue_loss,
-                              tissue_loss_percent,
-                              disease_name,
-                              binary_disease,
-                              disease_percent,
-                              cyanobacteria_contact,
-                              cyanobacteria_percent,
-                              cyanobacteria_overgrown,
-                              binary_turf_contact,
-                              turf_contact_percent,
-                              turf_overgrown,
-                              binary_algal_contact,
-                              n_algal_contacts,
-                              algal_contact_types,
-                              binary_macroalgal_contact,
-                              n_macroalgal_contacts,
-                              macroalgal_contact_types,
-                              binary_CCA_contact,
-                              cca_contact_percent,
-                              cca_overgrown,
-                              seagrass_contact,
-                              parrotfish_bites,
-                              invertebrate_contact_types,
-                              coral_contact_types,
-                              sediment_contact,
-                              corallite_type,
-                              calcifies,
-                              functional_group_sensu_darling,
-                              Abundance.GBR,
-                              Abundance.world,
-                              Coloniality,
-                              Colony.maximum.diameter,
-                              Corallite.width.maximum,
-                              Corallite.width.minimum,
-                              Depth.lower,
-                              Depth.upper,
-                              Genus.fossil.age,
-                              Growth.form.typical,
-                              IUCN.Red.List.category,
-                              Mode.of.larval.development,
-                              Oocyte.size.at.maturity,
-                              Propagule.size.on.release.max,
-                              Propagule.size.on.release.mean,
-                              Sexual.system,
-                              Skeletal.density,
-                              Species.age.phylogeny,
-                              Substrate.attachment,
-                              Water.clarity.preference,
-                              Wave.exposure.preference,
-                              Zooxanthellate,
-                              Colony_maximum_GCMP_recorded,
-                              shelf_location,
-                              visibility,
-                              visibility_method)
-
-
-
-```
 
 # Rename and convert
 
@@ -342,7 +227,7 @@ Diagnostics <- Diagnostics %>% rename(temperatureInDegreesCelsius = temperature,
                                       visibilityMethod = visibility_method)
 
 
-```
+
 #####
 events <- events %>% rename(SampleID = tissueID, 
                             collection_id = locationID,
@@ -451,6 +336,7 @@ events <- events %>% rename(SampleID = tissueID,
       collectionYear = year(date)) %>%
       select(-date)
 #####
+```
 
 # Configure GEOME
 
@@ -461,20 +347,6 @@ events <- events %>% rename(SampleID = tissueID,
   d. add "coralColony" to the front of GCMP-specific diagnostics terms
 2. Set up lists of controlled vocabularies
 3. Set up validation rules for various terms as defined in our working spreadsheet
-
-
-# Deduplicate
-
-Here is where you'll make the data more efficient, into [First Normal Form](https://en.wikipedia.org/wiki/First_normal_form), 
-by removing duplicate entries in the events and samples tables.
-
-```{r}
-dim(events)
-events <- events %>% distinct()
-
-dim(events)
-
-```
 
 
 # Split into Expeditions
@@ -490,7 +362,7 @@ E1 <- df %>% mutate(expedition = str_match(SampleID,"10895\\.(E\\d+)")[,2], .bef
 
 # Validate
 
-You'll want to use dplyr left_join() here and some sort of diff function to see if you can exactly reconstruct the dataset from these de-duplicated tables
+
 
 
 
