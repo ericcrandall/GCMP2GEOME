@@ -112,18 +112,19 @@ Event <- Event %>% rename(locationID = collection_id,
                           oceanBasin = ocean,
                           oceanSuperregion = ocean_superregion,
                           country = country,
-                          collectorList = collected_by) %>%
+                          collectorList = collected_by,
+                          principalInvestigator = relevant_collaborators) %>%
                           unite(locality, reef_name, site_name) %>% # locality appeared twice for reef_name and site_name, so I combined the two columns, delimited by an underscore
                           mutate(yearCollected = year(date),
                             monthCollected = month(date),
                             dayCollected = day(date)) %>% # Separate date into year, month, day in that order
-                            select(-date) # Remove concatenated date.
+                            
 
 
 
 
-Sample <- df %>% select(basisOfRecord = sample_type_EMP, # Need to finalize if this will be the basis of record.
-                          physical_sample_location = physical_sample_location,
+Sample <- df %>% select(basisOfRecord = sample_type_EMP, 
+                          institutionCode = physical_sample_location,
                           verbatimLabel = local_colony_name,
                           individualID = local_sample_id,
                           materialSampleID = colony_name,
@@ -132,7 +133,8 @@ Sample <- df %>% select(basisOfRecord = sample_type_EMP, # Need to finalize if t
                           specificEpithet = host_species_id,
                           organismRemarks = biological_sample_notes,
                           Huang_Roy_tree_name = Huang_Roy_tree_name,
-                          host_clade_sensu_fukami = host_clade_sensu_fukami,
+                          higherClassification = host_clade_sensu_fukami,
+                          taxonID = TAXON_ID,
                           complex_robust = complex_robust,
                           full_taxonomy_string_with_clade = full_taxonomy_string_with_clade, 
                           taxonomy_string_to_clade = taxonomy_string_to_clade,
@@ -141,7 +143,7 @@ Sample <- df %>% select(basisOfRecord = sample_type_EMP, # Need to finalize if t
                           taxonomy_string_to_subclass = taxonomy_string_to_subclass,
                           taxonomy_string_to_class = taxonomy_string_to_class,
                           family = family,
-                          vernacularName = common_name,
+                          colloquialName = common_name,
                           speciesNotes = species_notes,
                           occurenceRemarks = Description) %>% 
                           unite(col="higherClassification", c("Huang_Roy_tree_name", "host_clade_sensu_fukami", "complex_robust"), sep=" | ") %>%
@@ -149,12 +151,12 @@ Sample <- df %>% select(basisOfRecord = sample_type_EMP, # Need to finalize if t
                           separate(physical_sample_location, c("principalInvestigator",                                                               "institutionCode"), sep=",") %>% # Separated physical sample location into principal investigator and institution code, removed institution country.
                           separate(full_taxonomy_string_with_clade, c("phyla", "class", "order"), sep="_") %>%   # Split the phyla, class, order, etc. into their own separate columns.
                           select(-c("taxonomy_string_to_clade", "taxonomy_string_to_family", "taxonomy_string_to_order", "taxonomy_string_to_subclass", "taxonomy_string_to_class")) # Remove the concatenated versions of taxonomy.
-
+### Missing: associatedReferences AND fundingSource, samplingProtocol, previousIdentifications, nomenclaturalCode
 
 
 
 Tissue <- Tissue %>% rename(tissueID = SampleID,
-                             tissueType = sample_type)
+                             tissueType = sample_type) # BiologicalMatter also renamed to tissueType?
 
 
 
@@ -166,176 +168,42 @@ Diagnostics <- Diagnostics %>% rename(temperatureInDegreesCelsius = temperature,
                                       PARinUnits = photosynthetically_active_radiation,
                                       PARMethod = PAR_method,
                                       contactDescription = contact_description,
-                                      colonyHeightInMeters = colony_height_m,
-                                      colonyWidth1InMeters = colony_width1,
-                                      colonyWidth2InMeters = colony_width2,
-                                      colorWatch = coral_color,
-                                      colorWatch2 = coral_color_additional,
-                                      tissueLoss = binary_tissue_loss,
-                                      tissueLossPercent = tissue_loss_percent,
-                                      diseaseName = disease_name,
-                                      disease = binary_disease,
-                                      diseasePercent = disease_percent,
-                                      cyanobacteriaContact = cyanobacteria_contact,
-                                      cyanobacteriaContactPercent = cyanobacteria_percent,
-                                      cyanobacteriaOvergrown = cyanobacteria_overgrown,
-                                      turfContact = binary_turf_contact,
-                                      turfContactPercent = turf_contact_percent,
-                                      turfOvergrown = turf_overgrown,
-                                      algalContact = binary_algal_contact,
-                                      algalcontactsNumber = n_algal_contacts,
-                                      algalContactTypes = algal_contact_types,
-                                      macroalgalContact = binary_macroalgal_contact,
-                                      macroalgalContactsNumber = n_macroalgal_contacts,
-                                      macroalgalContactTypes = macroalgal_contact_types,
-                                      CCAContact = binary_CCA_contact,
-                                      CCAContactPercent = cca_contact_percent,
-                                      CCAOvergrown = cca_overgrown,
-                                      seagrassContact = seagrass_contact,
-                                      parrotfishBites = parrotfish_bites,
-                                      invertContactTypes = invertebrate_contact_types,
-                                      coralContactTypes = coral_contact_types,
-                                      sedimentContact = sediment_contact,
-                                      coralliteType = corallite_type,
-                                      calcifies = calcifies,###
-                                      funtionalEcology = functional_group_sensu_darling,
-                                      abundanceGBR = Abundance.GBR,###
-                                      abundanceWorld = Abundance.world,###
-                                      coloniality = Coloniality,###
-                                      colonyMaximumDiameterInCentimeters = Colony.maximum.diameter,###
-                                      coralliteMaximumWidthInMillimeters = Corallite.width.maximum,###
-                                      coralliteMinimumWidthInMillimeters = Corallite.width.minimum,###
-                                      depthLowerLimitInMeters = Depth.lower,###
-                                      depthUpperLimitInMeters = Depth.upper,###
-                                      genusFossilAgeInMYA = Genus.fossil.age,###
-                                      growthFormTypical = Growth.form.typical,###
-                                      IUCNRedListCategory = IUCN.Red.List.category,###
-                                      modeOfLarvalDevelopment = Mode.of.larval.development,###
-                                      oocyteSizeAtMaturityInMicrometers = Oocyte.size.at.maturity,###
-                                      maxPropaguleSizeOnReleaseInMicrometers = Propagule.size.on.release.max,###
-                                      meanPropaguleSizeOnReleaseInMicrometers = Propagule.size.on.release.mean,###
-                                      sexualSystem = Sexual.system,###
-                                      skeletalDensityInGramsPerCubicCentimeter = Skeletal.density,###
-                                      speciesAgePhylogenyInMYA = Species.age.phylogeny,###
-                                      substrateAttachment = Substrate.attachment,###
-                                      waterClarityPreference = Water.clarity.preference,###
-                                      waveExposurePreference = Wave.exposure.preference,###
-                                      symbioticAposymbiotic = Zooxanthellate,###
-                                      colonyDiameterInCentimeters = Colony_maximum_GCMP_recorded,###
+                                      dominantCover = dominant_cover_2m
+                                      coralColonyHeightInCentimeters = colony_height_m,
+                                      coralColonyWidth1InCentimeters = colony_width1,
+                                      coralColonyWidth2InCentimeters = colony_width2,
+                                      coralColonyColorWatch = coral_color,
+                                      coralColonyColorWatch2 = coral_color_additional,
+                                      coralColonyTissueLoss = binary_tissue_loss,
+                                      coralColonyTissueLossPercent = tissue_loss_percent,
+                                      diseaseObservedName = disease_name,
+                                      diseaseDetected = binary_disease,
+                                      diseaseObservedPrevalencePercent = disease_percent,
+                                      coralColonyCyanobacteriaContact = cyanobacteria_contact,
+                                      coralColonyCyanobacteriaContactPercent = cyanobacteria_percent,
+                                      coralColonyCyanobacteriaOvergrown = cyanobacteria_overgrown,
+                                      coralColonyTurfContact = binary_turf_contact,
+                                      coralColonyTurfContactPercent = turf_contact_percent,
+                                      coralColonyTurfOvergrown = turf_overgrown,
+                                      coralColonyAlgalContact = binary_algal_contact,
+                                      coralColonyAlgalContactsNumber = n_algal_contacts,
+                                      coralColonyAlgalContactTypes = algal_contact_types,
+                                      coralColonyMacroalgalContact = binary_macroalgal_contact,
+                                      coralColonyMacroalgalContactsNumber = n_macroalgal_contacts,
+                                      coralColonyMacroalgalContactTypes = macroalgal_contact_types,
+                                      coralColonyCCAContact = binary_CCA_contact,
+                                      coralColonyCCAContactPercent = cca_contact_percent,
+                                      coralColonyCCAOvergrown = cca_overgrown,
+                                      coralColonySeagrassContact = seagrass_contact,
+                                      coralColonyParrotfishBites = parrotfish_bites,
+                                      coralColonyInvertebrateContactTypes = invertebrate_contact_types,
+                                      coralColonyCoralContactTypes = coral_contact_types,
+                                      coralColonySedimentContact = sediment_contact,
+                                      colonyDiameterInCentimeters = Colony_maximum_GCMP_recorded ##??? GCMP column is crossed out in the spreadsheet?
                                       shelfLocation = shelf_location,
                                       visibilityInMeters = visibility,
                                       visibilityMethod = visibility_method)
 
-
-
-#####
-events <- events %>% rename(SampleID = tissueID, 
-                            collection_id = locationID,
-                            date = yearCollectedANDmonthCollectedANDdayCollected,# 
-                            reef_name =locality, 
-                            collection_time = timeOfDay,
-                            latitude = decimalLatitude,
-                            longitude = decimalLongitude,
-                            substrate = substratum,
-                            depth =	minimumDepthInMeters,#
-                            temperature = temperatureInDegreesCelsius,
-                            surface_temperature = surfaceTemperatureinDegreesCelsius,
-                            salinity = salinity,#
-                            photosynthetically_active_radiation	= PARinUnits,
-                            PAR_method = PARMethod,
-                            physical_sample_location =	principalInvestigator,#
-                            sample_type = tissueType,
-                            local_colony_name = verbatimLabel, 
-                            contact_description = contactDescription,
-                            local_sample_id = individualID, 
-                            colony_sample_name = materialSampleID,
-                            host_scientific_name = scientificName,
-                            host_genus_id = genus,
-                            host_species_id = specificEpithet,
-                            colony_height_cm = colonyHeightInMeters,
-                            colony_width1 = colonyWidth1InMeters,
-                            colony_width2 =colonyWidth2InMeters,
-                            coral_color = colorWatch,
-                            coral_color_additional = colorWatch2,
-                            binary_tissue_loss = tissueLoss,
-                            tissue_loss_percent = tissueLossPercent,
-                            disease_name = diseaseName, 
-                            binary_disease = disease,
-                            disease_percent = diseasePercent,
-                            cyanobacteria_contact = cyanobacteriaContact,
-                            cyanobacteria_percent = cyanobacteriaContactPercent,
-                            cyanobacteria_overgrown = cyanobacteriaOvergrown,
-                            binary_turf_contact = turfContact,
-                            turf_contact_percent = turfContactPercent,
-                            turf_overgrown = turfOvergrown,
-                            binary_algal_contact = algalContact,
-                            n_algal_contacts = algalcontactsNumber,
-                            algal_contact_types = algalContactTypes,
-                            binary_macroalgal_contact = macroalgalContact,
-                            n_macroalgal_contacts = macroalgalContactsNumber,
-                            macroalgal_contact_types = macroalgalContactTypes,
-                            binary_CCA_contact = CCAContact,
-                            cca_contact_percent = CCAContactPercent,
-                            cca_overgrown = CCAOvergrown,
-                            seagrass_contact = seagrassContact,
-                            parrotfish_bites = parrotfishBites,
-                            invertebrate_contact_types = invertContactTypes,
-                            coral_contact_types = coralContactTypes,
-                            Sediment_contact = sedimentContact,
-                            biological_sample_notes = organismRemarks,
-                            field_host_clade_sensu_fukami = higherClassificationANDnamePublishedIn,
-                            TAXON_ID = taxonID,
-                            full_taxonomy_string_with_clade = taxonomyPhylaANDtaxonomyClassANDtaxonomyOrderANDtaxonomyCladeANDgenusANDspecificEpithet,                           taxonomy_string_to_clade = taxonomyPhylaANDtaxonomyClassANDtaxonomyOrderANDtaxonomyClade,
-                            taxonomy_string_to_family = taxonomyPhylaANDtaxonomyClassANDtaxonomyOrderANDtaxonomyFamily,
-                            taxonomy_string_to_order = taxonomyPhylaANDtaxonomyClassANDtaxonomyOrder,
-                            taxonomy_string_to_subclass = taxonomyPhylaANDtaxonomyClassANDtaxonomySubclass,
-                            taxonomy_string_to_class = taxonomyPhylaANDtaxonomyClass,
-                            complex_robust = higherClassificationANDnamePublishedIn,
-                            family = family,
-                            common_name = vernacularName,
-                            corallite_type = coralliteType,
-                            calcifies = calcifies,#
-                            species_notes = speciesNotes,
-                            functional_group_sensu_darling = funtionalEcology,
-                            Abundance.GBR = abundanceGBR, #
-                            Abundance.world = abundanceWorld,#
-                            Coloniality = coloniality, #
-                            Colony.maximum.diameter = colonyMaximumDiameterInCentimeters,#
-                            Corallite.width.maximum = coralliteMaximumWidthInMillimeters,#
-                            Corallite.width.minimum = coralliteMinimumWidthInMillimeters,#
-                            Genus.fossil.age = genusFossilAgeInMYA,#
-                            Growth.form.typical = growthFormTypical,#
-                            IUCN.Red.List.category = IUCNRedListCategory,#
-                            Mode.of.larval.development = modeOfLarvalDevelopment,#
-                            Oocyte.size.at.maturity = oocyteSizeAtMaturityInMicrometers,#
-                            Propagule.size.on.release.max = maxPropaguleSizeOnReleaseInMicrometers,#
-                            Propagule.size.on.release.mean = meanPropaguleSizeOnReleaseInMicrometers,#
-                            Range.size = rangeSizeInSquareKilometers,#
-                            Sexual.system = sexualSystem,#
-                            Skeletal.density = skeletalDensityInGramsPerCubicCentimeter,#
-                            Species.age.phylogeny = speciesAgePhylogenyInMYA,#
-                            Substrate.attachment = substrateAttachment,#
-                            Wave.exposure.preference = waveExposurePreference,#
-                            Zooxanthellate = symbioticAposymbiotic,#
-                            Colony_maximum_GCMP_recorded = colonyDiameterInCentimeters,#
-                            reef_type = fieldNotes,
-                            shelf_location = shelfLocation,
-                            site_name = locality,
-                            geographic_area = cardinalLocation,
-                            ocean_area = waterBody,
-                            ocean = oceanBasin,
-                            ocean_superregion = oceanSuperregion,
-                            sampling_expedition = expeditionTitle,
-                            country = country,
-                            collected_by = collectorList,
-                            visibility = visibilityInMeters,
-                            visibility_method = visibilityMethod,
-                            Description = occurenceRemarks) %>% 
-      mutate(collectionDay = day(date),
-      collectionMonth = month(date),
-      collectionYear = year(date)) %>%
-      select(-date)
-#####
 ```
 
 # Configure GEOME
