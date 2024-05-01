@@ -99,6 +99,8 @@ past family (column CU)
 Now you need to rename and/or convert any data into GEOME format
 
 ```{r}
+# Do we still need to split the data? Or just df %>% rename everything together in the imported df?
+
 Event <- Event %>% rename(locationID = collection_id,
                           timeOfDay = collection_time,
                           decimalLatitude = latitude,
