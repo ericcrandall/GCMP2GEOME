@@ -101,7 +101,7 @@ Now you need to rename and/or convert any data into GEOME format
 ```{r}
 # Do we still need to split the data? Or just df %>% rename everything together in the imported df?
 
-Event <- Event %>% rename(locationID = collection_id,
+df <- df %>% rename(locationID = collection_id,
                           timeOfDay = collection_time,
                           decimalLatitude = latitude,
                           decimalLongitude = longitude,
@@ -109,61 +109,13 @@ Event <- Event %>% rename(locationID = collection_id,
                           maximumDepthInMeters = depth,
                           rangeSizeInSquareKilometers = Range.size,###
                           fieldNotes = reef_type,
-                          # cardinalLocation = geographic_area,
                           continentOcean = ocean_area,
                           oceanBasin = ocean,
                           oceanSuperregion = ocean_superregion, # concatenate oceanArea, ocean, oceanSuperregion
                           country = country,
                           collectorList = collected_by,
-                          principalInvestigator = relevant_collaborators) %>%
-                          unite(locality, reef_name, site_name) %>% # locality appeared twice for reef_name and site_name, so I combined the two columns, delimited by an underscore
-                          mutate(yearCollected = year(date),
-                            monthCollected = month(date),
-                            dayCollected = day(date)) %>% # Separate date into year, month, day in that order
-                            
-
-
-
-
-Sample <- df %>% select(basisOfRecord = sample_type_EMP, 
-                          institutionCode = physical_sample_location,
-                          verbatimLabel = local_colony_name,
-                          individualID = local_sample_id,
-                          materialSampleID = colony_name,
-                          scientificName = host_scientific_name,
-                          genus = host_genus_id,
-                          specificEpithet = host_species_id,
-                          organismRemarks = biological_sample_notes,
-                          Huang_Roy_tree_name = Huang_Roy_tree_name,
-                          higherClassification = host_clade_sensu_fukami,
-                          taxonID = TAXON_ID,
-                          complex_robust = complex_robust,
-                          full_taxonomy_string_with_clade = full_taxonomy_string_with_clade, 
-                          taxonomy_string_to_clade = taxonomy_string_to_clade,
-                          taxonomy_string_to_family = taxonomy_string_to_family,
-                          taxonomy_string_to_order = taxonomy_string_to_order,
-                          taxonomy_string_to_subclass = taxonomy_string_to_subclass,
-                          taxonomy_string_to_class = taxonomy_string_to_class,
-                          family = family,
-                          colloquialName = common_name,
-                          speciesNotes = species_notes,
-                          occurenceRemarks = Description) %>% 
-                          unite(col="higherClassification", c("Huang_Roy_tree_name", "host_clade_sensu_fukami", "complex_robust"), sep=" | ") %>%
-                          add_column("namePublishedIn" = "https://doi.org/10.1098/rstb.2014.0010 | https://doi.org/10.1371/journal.pone.0003222 | https://doi.org/10.1038/sdata.2016.17", .after = "higherClassification") %>% # DOI for the relevant publications referenced for higherClassification.
-                          separate(physical_sample_location, c("principalInvestigator",                                                               "institutionCode"), sep=",") %>% # Separated physical sample location into principal investigator and institution code, removed institution country.
-                          separate(full_taxonomy_string_with_clade, c("phyla", "class", "order"), sep="_") %>%   # Split the phyla, class, order, etc. into their own separate columns.
-                          select(-c("taxonomy_string_to_clade", "taxonomy_string_to_family", "taxonomy_string_to_order", "taxonomy_string_to_subclass", "taxonomy_string_to_class")) # Remove the concatenated versions of taxonomy.
-### Missing: associatedReferences AND fundingSource, samplingProtocol, previousIdentifications, nomenclaturalCode
-
-
-
-Tissue <- Tissue %>% rename(tissueID = SampleID,
-                             tissueType = sample_type) # BiologicalMatter also renamed to tissueType?
-
-
-
-
-Diagnostics <- Diagnostics %>% rename(temperatureInDegreesCelsius = temperature,
+                          principalInvestigator = relevant_collaborators,
+                          temperatureInDegreesCelsius = temperature,
                                       surfaceTemperatureinDegreesCelsius = surface_temperature,
                                       salinity = salinity, # probably can remove
                                       oxygen = oxygen, # probably can remove
@@ -204,7 +156,45 @@ Diagnostics <- Diagnostics %>% rename(temperatureInDegreesCelsius = temperature,
                                       colonyDiameterInCentimeters = Colony_maximum_GCMP_recorded ##??? GCMP column is crossed out in the spreadsheet?
                                       shelfLocation = shelf_location,
                                       visibilityInMeters = visibility,
-                                      visibilityMethod = visibility_method)
+                                      visibilityMethod = visibility_method,
+                                      tissueID = SampleID,
+                             tissueType = sample_type,
+                                      basisOfRecord = sample_type_EMP, 
+                          institutionCode = physical_sample_location,
+                          verbatimLabel = local_colony_name,
+                          individualID = local_sample_id,
+                          materialSampleID = colony_name,
+                          scientificName = host_scientific_name,
+                          genus = host_genus_id,
+                          specificEpithet = host_species_id,
+                          organismRemarks = biological_sample_notes,
+                          Huang_Roy_tree_name = Huang_Roy_tree_name,
+                          higherClassification = host_clade_sensu_fukami,
+                          taxonID = TAXON_ID,
+                          complex_robust = complex_robust,
+                          full_taxonomy_string_with_clade = full_taxonomy_string_with_clade, 
+                          taxonomy_string_to_clade = taxonomy_string_to_clade,
+                          taxonomy_string_to_family = taxonomy_string_to_family,
+                          taxonomy_string_to_order = taxonomy_string_to_order,
+                          taxonomy_string_to_subclass = taxonomy_string_to_subclass,
+                          taxonomy_string_to_class = taxonomy_string_to_class,
+                          family = family,
+                          colloquialName = common_name,
+                          occurenceRemarks = Description) %>%
+                          unite(locality, reef_name, site_name) %>% # locality appeared twice for reef_name and site_name, so I combined the two columns, delimited by an underscore
+                        unite(oceanArea, ocean, oceanSuperregion) %>%
+                          mutate(yearCollected = year(date),
+                            monthCollected = month(date),
+                            dayCollected = day(date)) %>% # Separate date into year, month, day in that order
+                          select(-date) %>% # Remove concatenated date.
+                          unite(col="higherClassification", c("Huang_Roy_tree_name", "host_clade_sensu_fukami", "complex_robust"), sep=" | ") %>%
+                          add_column("namePublishedIn" = "https://doi.org/10.1098/rstb.2014.0010 | https://doi.org/10.1371/journal.pone.0003222 | https://doi.org/10.1038/sdata.2016.17", .after = "higherClassification") %>% # DOI for the relevant publications referenced for higherClassification.
+                          separate(physical_sample_location, c("principalInvestigator",                                                               "institutionCode"), sep=",") %>% # Separated physical sample location into principal investigator and institution code, removed institution country.
+                          separate(full_taxonomy_string_with_clade, c("phyla", "class", "order"), sep="_") %>%   # Split the phyla, class, order, etc. into their own separate columns.
+                          select(-c("taxonomy_string_to_clade", "taxonomy_string_to_family", "taxonomy_string_to_order", "taxonomy_string_to_subclass", "taxonomy_string_to_class")) # Remove the concatenated versions of taxonomy.
+### Missing: associatedReferences AND fundingSource, samplingProtocol, previousIdentifications, nomenclaturalCode
+
+
 
 ```
 
