@@ -26,7 +26,7 @@ y_or_n <- function(x){
   x == "y"
 }
 
-df <- read_tsv(file = "GCMP_EMP_map_r30_v2_Current.txt", na = c("","NA","na","Not Applicable"),
+df <- read_tsv(file = "GCMP_EMP_map_r30_v1_Current.txt", na = c("","NA","na","Not Applicable"),
               col_types = cols(
                 date = col_date(format = "%m/%d/%y"),
                 depth = "n",
@@ -54,8 +54,8 @@ df <- read_tsv(file = "GCMP_EMP_map_r30_v2_Current.txt", na = c("","NA","na","No
           # like changing other y/n columns to logical  
   
 # Check column class
-summary=sapply(df, class)
-write.csv(summary, "summary-table-class.csv")
+# summary=sapply(df, class)
+# write.csv(summary, "summary-table-class.csv")
 ```
 
 # Clean the Data
@@ -77,28 +77,28 @@ past family (column CU)
 
 Now you need to rename and/or convert any data into GEOME format
 
+Missing fields (left as comments for now but remember to remove the # sign when re-running the code): reef_type, relevant_collaborators, photosynthetically_active_radiation, shelf_location, visibility, visibility_method
+
 ```{r}
 # Do we still need to split the data? Or just df %>% rename everything together in the imported df?
 
-df <- df %>% rename(locationID = collection_id,
+df_renamed <- df %>% rename(locationID = collection_id,
                           timeOfDay = collection_time,
                           decimalLatitude = latitude,
                           decimalLongitude = longitude,
                           substratum = substrate, 
                           maximumDepthInMeters = depth,
                           rangeSizeInSquareKilometers = Range.size,###
-                          fieldNotes = reef_type,
-                          continentOcean = ocean_area,
-                          oceanBasin = ocean,
+                          # fieldNotes = reef_type, 
+                          waterBody = ocean_area,
+                          continentOcean = ocean,
                           oceanSuperregion = ocean_superregion, # concatenate oceanArea, ocean, oceanSuperregion
                           country = country,
                           collectorList = collected_by,
-                          principalInvestigator = relevant_collaborators,
+                          # principalInvestigator = relevant_collaborators,
                           temperatureInDegreesCelsius = temperature,
                                       surfaceTemperatureinDegreesCelsius = surface_temperature,
-                                      salinity = salinity, # probably can remove
-                                      oxygen = oxygen, # probably can remove
-                                      PARinUnits = photosynthetically_active_radiation,
+                                      # PARInMicroMolQuantaMetersSquaredPerSecond = photosynthetically_active_radiation,
                                       PARMethod = PAR_method,
                                       contactDescription = contact_description,
                                       dominantCover = dominant_cover_2m,
@@ -132,10 +132,9 @@ df <- df %>% rename(locationID = collection_id,
                                       coralColonyInvertebrateContactTypes = invertebrate_contact_types,
                                       coralColonyCoralContactTypes = coral_contact_types,
                                       coralColonySedimentContact = sediment_contact,
-                                      colonyDiameterInCentimeters = Colony_maximum_GCMP_recorded, ##??? GCMP column is crossed out in the spreadsheet?
-                                      shelfLocation = shelf_location,
-                                      visibilityInMeters = visibility,
-                                      visibilityMethod = visibility_method,
+                                      # shelfLocation = shelf_location,
+                                      # visibilityInMeters = visibility,
+                                      # visibilityMethod = visibility_method,
                                       tissueID = SampleID,
                              tissueType = sample_type,
                                       basisOfRecord = sample_type_EMP, 
@@ -144,34 +143,22 @@ df <- df %>% rename(locationID = collection_id,
                           individualID = local_sample_id,
                           materialSampleID = colony_name,
                           scientificName = host_scientific_name,
-                          genus = host_genus_id,
+                          # genus = host_genus_id, # Duplicated with another genus column
                           specificEpithet = host_species_id,
                           organismRemarks = biological_sample_notes,
-                          Huang_Roy_tree_name = Huang_Roy_tree_name,
-                          higherClassification = host_clade_sensu_fukami,
+                          # Huang_Roy_tree_name = Huang_Roy_tree_name,
+                          # higherClassification = host_clade_sensu_fukami,
                           taxonID = TAXON_ID,
-                          complex_robust = complex_robust,
-                          full_taxonomy_string_with_clade = full_taxonomy_string_with_clade, 
-                          taxonomy_string_to_clade = taxonomy_string_to_clade,
-                          taxonomy_string_to_family = taxonomy_string_to_family,
-                          taxonomy_string_to_order = taxonomy_string_to_order,
-                          taxonomy_string_to_subclass = taxonomy_string_to_subclass,
-                          taxonomy_string_to_class = taxonomy_string_to_class,
-                          family = family,
+                          phylum = Phylum,
                           colloquialName = common_name,
                           occurenceRemarks = Description) %>%
                           unite(locality, reef_name, site_name) %>% # locality appeared twice for reef_name and site_name, so I combined the two columns, delimited by an underscore
-                        unite(ocean_area, ocean, ocean_superregion) %>%
+                        unite(waterBody, continentOcean, oceanSuperregion) %>%
                           mutate(yearCollected = year(date),
                             monthCollected = month(date),
                             dayCollected = day(date)) %>% # Separate date into year, month, day in that order
                           select(-date) %>% # Remove concatenated date.
-                          unite(col="higherClassification", c("Huang_Roy_tree_name", "host_clade_sensu_fukami", "complex_robust"), sep=" | ") %>%
-                          add_column("namePublishedIn" = "https://doi.org/10.1098/rstb.2014.0010 | https://doi.org/10.1371/journal.pone.0003222 | https://doi.org/10.1038/sdata.2016.17", .after = "higherClassification") %>% # DOI for the relevant publications referenced for higherClassification.
-                          separate(physical_sample_location, c("principalInvestigator",                                                               "institutionCode"), sep=",") %>% # Separated physical sample location into principal investigator and institution code, removed institution country.
-                          separate(full_taxonomy_string_with_clade, c("phyla", "class", "order"), sep="_") %>%   # Split the phyla, class, order, etc. into their own separate columns.
-                          select(-c("taxonomy_string_to_clade", "taxonomy_string_to_family", "taxonomy_string_to_order", "taxonomy_string_to_subclass", "taxonomy_string_to_class")) # Remove the concatenated versions of taxonomy.
-### Missing: associatedReferences AND fundingSource, samplingProtocol, previousIdentifications, nomenclaturalCode
+                          separate(institutionCode, c("principalInvestigator",                                                               "institutionCode"), sep=",") # Separated physical sample location into principal investigator and institution code, removed institution country.
 
 
 
@@ -193,10 +180,40 @@ df <- df %>% rename(locationID = collection_id,
 There were 11 or 14 GCMP expeditions, and we need to split these concatenated data back into their constituent expeditions.
 
 ```{r}
-E1 <- df %>% mutate(expedition = str_match(SampleID,"10895\\.(E\\d+)")[,2], .before = sample_name_backup) %>% 
+E1 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E1")
-  
 
+E2 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E2")
+
+E3 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E3")
+
+E4 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E4")
+
+E5 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E5")
+
+E6 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E6")
+
+E7 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E7")
+
+E8 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E8")
+
+E9 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E9")
+
+E10 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E10")
+
+E11 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E11")
+  
+```
 ```
 
 # Validate
