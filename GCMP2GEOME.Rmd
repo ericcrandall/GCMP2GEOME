@@ -77,7 +77,7 @@ past family (column CU)
 
 Now you need to rename and/or convert any data into GEOME format
 
-Missing fields (left as comments for now but remember to remove the # sign when re-running the code): reef_type, relevant_collaborators, photosynthetically_active_radiation, shelf_location, visibility, visibility_method
+Missing fields (left as comments for now but remember to remove the # sign when re-running the code): reef_type, relevant_collaborators, photosynthetically_active_radiation, shelf_location, visibility, visibility_method - completed: CH 05/07/2024
 
 ```{r}
 # Do we still need to split the data? Or just df %>% rename everything together in the imported df?
@@ -88,17 +88,18 @@ df_renamed <- df %>% rename(locationID = collection_id,
                           decimalLongitude = longitude,
                           substratum = substrate, 
                           maximumDepthInMeters = depth,
-                          rangeSizeInSquareKilometers = Range.size,###
-                          # fieldNotes = reef_type, 
+                          rangeSizeInSquareKilometers = Range.size,
+                          fieldNotes = reef_type, 
                           waterBody = ocean_area,
                           continentOcean = ocean,
-                          oceanSuperregion = ocean_superregion, # concatenate oceanArea, ocean, oceanSuperregion
-                          country = country,
+                          oceanSuperregion = ocean_superregion,
+                          oceanArea = ocean_area,
+                          country = country, 
                           collectorList = collected_by,
-                          # principalInvestigator = relevant_collaborators,
-                          temperatureInDegreesCelsius = temperature,
+                          principalInvestigator = relevant_collaborators,
+                                      temperatureInDegreesCelsius = temperature,
                                       surfaceTemperatureinDegreesCelsius = surface_temperature,
-                                      # PARInMicroMolQuantaMetersSquaredPerSecond = photosynthetically_active_radiation,
+                                      PARInMicroMolQuantaMetersSquaredPerSecond = photosynthetically_active_radiation,
                                       PARMethod = PAR_method,
                                       contactDescription = contact_description,
                                       dominantCover = dominant_cover_2m,
@@ -132,9 +133,9 @@ df_renamed <- df %>% rename(locationID = collection_id,
                                       coralColonyInvertebrateContactTypes = invertebrate_contact_types,
                                       coralColonyCoralContactTypes = coral_contact_types,
                                       coralColonySedimentContact = sediment_contact,
-                                      # shelfLocation = shelf_location,
-                                      # visibilityInMeters = visibility,
-                                      # visibilityMethod = visibility_method,
+                                      shelfLocation = shelf_location,
+                                      visibilityInMeters = visibility,
+                                      visibilityMethod = visibility_method,
                                       tissueID = SampleID,
                              tissueType = sample_type,
                                       basisOfRecord = sample_type_EMP, 
@@ -143,11 +144,9 @@ df_renamed <- df %>% rename(locationID = collection_id,
                           individualID = local_sample_id,
                           materialSampleID = colony_name,
                           scientificName = host_scientific_name,
-                          # genus = host_genus_id, # Duplicated with another genus column
                           specificEpithet = host_species_id,
                           organismRemarks = biological_sample_notes,
-                          # Huang_Roy_tree_name = Huang_Roy_tree_name,
-                          # higherClassification = host_clade_sensu_fukami,
+                           host_clade_sensu_fukami = higherClassification,
                           taxonID = TAXON_ID,
                           phylum = Phylum,
                           colloquialName = common_name,
