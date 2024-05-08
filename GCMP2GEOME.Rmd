@@ -176,51 +176,62 @@ df_renamed <- df %>% rename(locationID = collection_id,
 
 # Split into Expeditions
 
-There were 11 or 14 GCMP expeditions, and we need to split these concatenated data back into their constituent expeditions.
-
+There were 13 GCMP expeditions, and we need to split these concatenated data back into their constituent expeditions.
+Expeditions E2, E12 & E15 were sequenced in 2023 and has yet to be included with the latest mapping file. 
 ```{r}
+#Australia
 E1 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E1")
-
+#Panama (Bocas)
 E2 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E2")
-
+# Australia (Lizard Island)
 E3 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E3")
-
+# KAUST
 E4 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E4")
-
+# Colombia 2015
 E5 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E5")
-
+# Curacao
 E6 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E6")
-
+# Australia (Ningaloo)
 E7 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E7")
-
+# Singapore
 E8 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E8")
-
+# Reunion
 E9 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E9")
-
+# Australia (Lord Howe)
 E10 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E10")
-
+# Panama (Pacific Coast)
 E11 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
         filter(expedition == "E11")
-  
+# Colombia 2016
+E12 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E12")
+# Hawaii
+E15 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
+        filter(expedition == "E15")
 ```
 ```
 
 # Validate
 
 
-
-
-
 # Write to Excel Template
 
 You'll want to use the `write.xlsx()` function in the xlsx package to write each table to the `Global Coral Microbiome Project.xlsx` GEOME template in the working directory.
+```{r}
+# Write Excel file for each expedition
+
+# Australia
+
+write.xlsx(E1, "../Global Coral Microbiome Project.xlsx", sheetName = "Australia (E1)", col.names = TRUE, row.names = TRUE)
+
+```
