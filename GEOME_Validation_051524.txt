@@ -1,0 +1,93 @@
+Validation results on Samples worksheet, for entity: Sample.
+1 or more errors found. Must fix to continue. Click each message for details
+
+Error: Unapproved value(s)
+"water" in column "basisOfRecord" not in list "basisOfRecord"
+"sediment" in column "basisOfRecord" not in list "basisOfRecord"
+"Not applicable" in column "phylum" not in list "phylum"
+"coral" in column "basisOfRecord" not in list "basisOfRecord"
+"Missing: Not collected" in column "phylum" not in list "phylum"
+Error: Duplicate parent records
+Duplicate "materialSampleID" values, however the other columns are not the same.
+Validation results on Samples worksheet, for entity: Diagnostics.
+1 or more errors found. Must fix to continue. Click each message for details
+
+Error: Invalid DataFormat
+"coralColonyAlgalContact" contains non-boolean value "y". Must be either true or false
+"coralColonyTurfContact" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyCCAContact" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyParrotfishBites" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyHeightInCentimeters" contains non-float value "NA"
+"coralColonyAlgalContact" contains non-boolean value "n". Must be either true or false
+"coralColonyTissueLoss" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyTurfOvergrown" contains non-boolean value "Missing: Not collected". Must be either true or false
+"diseaseObservedPrevalencePercent" contains non-float value "NA"
+"PARInMicroMolQuantaMetersSquaredPerSecond" contains non-float value "NA"
+"coralColonyParrotfishBites" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonySedimentContact" contains non-boolean value "n". Must be either true or false
+"coralColonyCCAContact" contains non-boolean value "y". Must be either true or false
+"coralColonyCCAOvergrown" contains non-boolean value "None". Must be either true or false
+"coralColonyCCAContactPercent" contains non-float value "NA"
+"coralColonySedimentContact" contains non-boolean value "y". Must be either true or false
+"coralColonyCCAContact" contains non-boolean value "n". Must be either true or false
+"coralColonySedimentContact" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyTurfOvergrown" contains non-boolean value "None". Must be either true or false
+"coralColonyParrotfishBites" contains non-boolean value "n". Must be either true or false
+"coralColonyCyanobacteriaOvergrown" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonySeagrassContact" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyCCAOvergrown" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyTissueLoss" contains non-boolean value "y". Must be either true or false
+"coralColonyAlgalContact" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyMacroalgalContact" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyTurfOvergrown" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyCyanobacteriaOvergrown" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyMacroalgalContact" contains non-boolean value "n". Must be either true or false
+"coralColonyCyanobacteriaContact" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyParrotfishBites" contains non-boolean value "y". Must be either true or false
+"coralColonyCyanobacteriaContact" contains non-boolean value "n". Must be either true or false
+"coralColonyTurfContact" contains non-boolean value "n". Must be either true or false
+"coralColonyTissueLoss" contains non-boolean value "n". Must be either true or false
+"coralColonyMacroalgalContact" contains non-boolean value "y". Must be either true or false
+"coralColonyWidth1InCentimeters" contains non-float value "NA"
+"coralColonyTissueLossPercent" contains non-float value "NA"
+"coralColonyCCAOvergrown" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonySedimentContact" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyMacroalgalContact" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyCyanobacteriaContactPercent" contains non-float value "NA"
+"coralColonyTissueLoss" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyTurfContactPercent" contains non-float value "NA"
+"coralColonyCyanobacteriaContact" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyAlgalContact" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyMacroalgalContactsNumber" contains non-integer value "NA"
+"coralColonyCyanobacteriaContact" contains non-boolean value "y". Must be either true or false
+"coralColonySeagrassContact" contains non-boolean value "n". Must be either true or false
+"coralColonyTurfContact" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyCyanobacteriaOvergrown" contains non-boolean value "None". Must be either true or false
+"coralColonySeagrassContact" contains non-boolean value "Missing: Not collected". Must be either true or false
+"coralColonyCCAContact" contains non-boolean value "Not applicable". Must be either true or false
+"coralColonyTurfContact" contains non-boolean value "y". Must be either true or false
+"coralColonyWidth2InCentimeters" contains non-float value "NA"
+Validation results on Samples worksheet, for entity: Tissue.
+1 or more warnings found. Click each message for details
+
+Warning: Unapproved value(s)
+"Millepora Skeleton" in column "tissueType" not in list "tissueType"
+"Reef Sediment" in column "tissueType" not in list "tissueType"
+"Missing: Not collected" in column "tissueType" not in list "tissueType"
+"Whole Coral" in column "tissueType" not in list "tissueType"
+"Alcyonacea Mucus" in column "tissueType" not in list "tissueType"
+"Zooanthid Skeleton" in column "tissueType" not in list "tissueType"
+"Reef Water" in column "tissueType" not in list "tissueType"
+"Zooanthid Tissue" in column "tissueType" not in list "tissueType"
+"Millepora Tissue" in column "tissueType" not in list "tissueType"
+"Zooanthid Mucus" in column "tissueType" not in list "tissueType"
+"Millepora Mucus" in column "tissueType" not in list "tissueType"
+Validation results on Samples worksheet, for entity: Event.
+1 or more errors found. Must fix to continue. Click each message for details
+
+Error: Unapproved value(s)
+"Missing: Not collected" in column "country" not in list "country"
+Error: Invalid number format
+Value "NA" out of range for "yearCollected" using range validation = ">=1500|<=2050"
+Warning: Number outside of range
+non-numeric value "NA" for column "maximumDepthInMeters"

@@ -223,6 +223,19 @@ E15 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[
 
 # Validate
 
+Based on our first validation, there were a number of issues to be addressed:
+
+1. BasisOfRecord - needs to only include vocab from the BasisOfRecord list. Terms in this field need to be moved to a different Darwin Core field. Eric will do this.
+2. Duplicate materialSampleIDs - we have duplicated MSIDs because each sample has 3 tissues. We need to move tissueIDs and any non-duplicated metadata to a new sheet for each expedition. Eric will do this, for starters
+3. Diagnostics. Need to change all y and n values in all Boolean fields to TRUE and FALSE. Colin will do this.
+4. Diagnostics. Need to change NA values to "Unknown". Colin will do this.
+5. Tissue. Unapproved values in tissueType. Eric will fix.
+6. Event. Vivian will do these.
+  1. Unnapproved values in country. Look up the country for these values.
+  2. NA for yearCollected. Find this, or replace with Unknown
+  3. maximumDepthInMeters - replace NA with Unknown
+
+
 
 # Write to Excel Template
 
