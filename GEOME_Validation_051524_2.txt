@@ -1,0 +1,49 @@
+Validation results on Samples worksheet, for entity: Diagnostics.
+1 or more errors found. Must fix to continue. Click each message for details
+
+Error: Invalid DataFormat
+"coralColonyAlgalContact" contains non-boolean value "y". Must be either true or false
+"coralColonySedimentContact" contains non-boolean value "n". Must be either true or false
+"coralColonyAlgalContact" contains non-boolean value "n". Must be either true or false
+"coralColonyCCAContact" contains non-boolean value "y". Must be either true or false
+"coralColonyMacroalgalContact" contains non-boolean value "n". Must be either true or false
+"coralColonySedimentContact" contains non-boolean value "y". Must be either true or false
+"coralColonyCyanobacteriaContact" contains non-boolean value "y". Must be either true or false
+"coralColonyCCAContact" contains non-boolean value "n". Must be either true or false
+"coralColonySeagrassContact" contains non-boolean value "n". Must be either true or false
+"coralColonyParrotfishBites" contains non-boolean value "n". Must be either true or false
+"coralColonyParrotfishBites" contains non-boolean value "y". Must be either true or false
+"coralColonyCyanobacteriaContact" contains non-boolean value "n". Must be either true or false
+"coralColonyTurfContact" contains non-boolean value "n". Must be either true or false
+"coralColonyTissueLoss" contains non-boolean value "n". Must be either true or false
+"coralColonyMacroalgalContact" contains non-boolean value "y". Must be either true or false
+"coralColonyTissueLoss" contains non-boolean value "y". Must be either true or false
+"coralColonyTurfContact" contains non-boolean value "y". Must be either true or false
+Validation results on Samples worksheet, for entity: Event.
+1 or more errors found. Must fix to continue. Click each message for details
+
+Error: Missing column(s)
+"country" has a missing cell value
+"decimalLongitude" has a missing cell value
+"yearCollected" has a missing cell value
+"decimalLatitude" has a missing cell value
+Warning: Invalid number format
+Value "10:41:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "10:38:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "15:30:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "11:15:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "11:26:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "10:30:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "11:23:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "10:35:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "12:00:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "11:28:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "10:00:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "11:30:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "10:20:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "12:45:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "10:37:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "10:39:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "11:27:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "11:00:00" out of range for "timeOfDay" using range validation = ">0|<24"
+Value "11:22:00" out of range for "timeOfDay" using range validation = ">0|<24"
