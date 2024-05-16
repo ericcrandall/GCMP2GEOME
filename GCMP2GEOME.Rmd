@@ -26,7 +26,7 @@ y_or_n <- function(x){
   x == "y"
 }
 
-df <- read_tsv(file = "GCMP_EMP_map_r30_v1_Current.txt", na = c("","NA","na","Not Applicable"),
+df <- read_tsv(file = "GCMP_EMP_map_r30_v1_Current.txt", na = c("","NA","na","Not Applicable", "Not applicable", "None", "Missing: Not collected", "Unknown"),
               col_types = cols(
                 date = col_date(format = "%m/%d/%y"),
                 depth = "n",
@@ -45,7 +45,8 @@ df <- read_tsv(file = "GCMP_EMP_map_r30_v1_Current.txt", na = c("","NA","na","No
                 cca_contact_percent = "n",
                 TAXON_ID = "n",
                 Range.size = "n",
-                visibility = "n"
+                visibility = "n",
+                coral_contact_types = "c"
               )) 
           #this optionally changes all columns that start with "binary" to logical (T/F) instead of y/n
           #mutate(across(starts_with("binary"), function(x){x == "y"}
@@ -80,8 +81,6 @@ Now you need to rename and/or convert any data into GEOME format
 Missing fields (left as comments for now but remember to remove the # sign when re-running the code): reef_type, relevant_collaborators, photosynthetically_active_radiation, shelf_location, visibility, visibility_method - completed: CH 05/07/2024
 
 ```{r}
-# Do we still need to split the data? Or just df %>% rename everything together in the imported df?
-
 df_renamed <- df %>% rename(locationID = collection_id,
                           timeOfDay = collection_time,
                           decimalLatitude = latitude,
@@ -137,27 +136,35 @@ df_renamed <- df %>% rename(locationID = collection_id,
                                       visibilityInMeters = visibility,
                                       visibilityMethod = visibility_method,
                                       tissueID = SampleID,
-                             tissueType = sample_type,
-                                      basisOfRecord = sample_type_EMP, 
+                          tissueType = sample_type,
                           institutionCode = physical_sample_location,
                           verbatimLabel = local_colony_name,
-                          individualID = local_sample_id,
                           materialSampleID = colony_name,
                           scientificName = host_scientific_name,
                           specificEpithet = host_species_id,
                           organismRemarks = biological_sample_notes,
-                           host_clade_sensu_fukami = higherClassification,
+                          higherClassification =host_clade_sensu_fukami,
                           taxonID = TAXON_ID,
                           phylum = Phylum,
                           colloquialName = common_name,
-                          occurenceRemarks = Description) %>%
-                          unite(locality, reef_name, site_name) %>% # locality appeared twice for reef_name and site_name, so I combined the two columns, delimited by an underscore
-                        unite(waterBody, continentOcean, oceanSuperregion) %>%
+                          occurenceRemarks = sample_type_EMP) %>%
+                          unite(locality, reef_name, site_name, sep = ":") %>% # locality appeared twice for reef_name and site_name, so I combined the two columns, delimited by an underscore
+                        unite(continentOcean, continentOcean, oceanSuperregion, sep = ":") %>%
                           mutate(yearCollected = year(date),
                             monthCollected = month(date),
                             dayCollected = day(date)) %>% # Separate date into year, month, day in that order
                           select(-date) %>% # Remove concatenated date.
-                          separate(institutionCode, c("principalInvestigator",                                                               "institutionCode"), sep=",") # Separated physical sample location into principal investigator and institution code, removed institution country.
+                          select(-local_sample_id) %>% 
+                          select(-geographic_area) %>%
+                          select(-Description) %>% 
+                          separate(institutionCode, c("principalInvestigator",                                                               
+                                                      "institutionCode"), sep=",") %>%  # Separated physical sample location into principal investigator and institution code, removed institution country. NOTE ignore warning about discarding additional pieces. It is doing what we want it to.
+                          mutate(basisOfRecord = case_match(occurenceRemarks,
+                                                            c("water","sediment") ~ "EnvironmentalDNA",
+                                                            "coral" ~ "PreservedSpecimen")) %>% 
+                          mutate(tissueType = case_when(str_detect(tissueType,regex("Tissue",ignore_case = T)) ~ "Tissue",
+                                                         str_detect(tissueType,regex("Skeleton",ignore_case = T)) ~ "Skeleton",
+                                                         str_detect(tissueType,regex("Mucus",ignore_case = T)) ~ "Mucus"))
 
 
 
@@ -177,7 +184,8 @@ df_renamed <- df %>% rename(locationID = collection_id,
 # Split into Expeditions
 
 There were 13 GCMP expeditions, and we need to split these concatenated data back into their constituent expeditions.
-Expeditions E2, E12 & E15 were sequenced in 2023 and has yet to be included with the latest mapping file. 
+Expeditions E2, E12 & E15 were sequenced in 2023 and has yet to be included with the latest mapping file.
+
 ```{r}
 #Australia
 E1 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[,2]) %>% 
@@ -226,8 +234,10 @@ E15 <- df_renamed %>% mutate(expedition = str_match(tissueID,"10895\\.(E\\d+)")[
 Based on our first validation, there were a number of issues to be addressed:
 
 1. BasisOfRecord - needs to only include vocab from the BasisOfRecord list. Terms in this field need to be moved to a different Darwin Core field. Eric will do this.
-2. Duplicate materialSampleIDs - we have duplicated MSIDs because each sample has 3 tissues. We need to move tissueIDs and any non-duplicated metadata to a new sheet for each expedition. Eric will do this, for starters
-3. Diagnostics. Need to change all y and n values in all Boolean fields to TRUE and FALSE. Colin will do this.
+  a. we will use occurenceRemarks to keep this information. And we will create a new field, basisOfRecord, to denote that "Sediment" and "Water" types are environmentalDNA
+2. Duplicate materialSampleIDs - we have duplicated MSIDs because each sample has 3 tissues. We need to move tissueIDs and any non-duplicated metadata to a new sheet for each expedition. Eric will do this.
+  a. This can be fixed by removing columns individualID occurenceRemarks, each of which have tissue-specific information at the sample level.
+3. Diagnostics. Need to change all y and n values in all Boolean fields to TRUE and FALSE. Also note, all Boolean fields will actually need to be character fields, in order to be able to have "Unknown" values.  Colin will do this.
 4. Diagnostics. Need to change NA values to "Unknown". Colin will do this.
 5. Tissue. Unapproved values in tissueType. Eric will fix.
 6. Event. Vivian will do these.
@@ -245,7 +255,7 @@ You'll want to use the `write.xlsx()` function in the xlsx package to write each
 
 # Australia
 
-write.xlsx(E1, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Australia (Lizard Island E1)", col.names = TRUE, row.names = TRUE)
+write.xlsx(E1, "E1 Lizard Island.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
 write.xlsx(E3, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Australia (Lizard Island E3)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
 
