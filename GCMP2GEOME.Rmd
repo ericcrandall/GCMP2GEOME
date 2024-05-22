@@ -255,26 +255,25 @@ You'll want to use the `write.xlsx()` function in the xlsx package to write each
 
 # Australia
 
-write.xlsx(E1, "E1 Lizard Island.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
+write.xlsx(E1, "E1 Australia Lizard Island.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-write.xlsx(E3, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Australia (Lizard Island E3)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E3, "E3 Australia Lizard Island.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-write.xlsx(E4, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Saudi Arabia (Kaust E4)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E4, "E4 Saudi Arabia Kaust.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-write.xlsx(E5, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Colombia (Cartagena E5)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E5, "E5 Colombia Cartagena.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-write.xlsx(E6, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Curacao (E6)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E6, "E6 Curacao.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-write.xlsx(E7, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Australia (Ningaloo E7)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E7, "E7 Australia Ningaloo.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-write.xlsx(E8, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Singapore (E8)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E8, "E8 Singapore.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-write.xlsx(E9, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Reunion (E9)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E9, "E9 Reunion.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-write.xlsx(E10, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Australia (Lord Howe E10)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E10, "E10 Australia Lord Howe.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
-
-write.xlsx(E11, "Global Coral Microbiome Mapping v1.xlsx", sheetName = "Panama (Las Perlas E11)", col.names = TRUE, row.names = TRUE, append=TRUE, showNA=TRUE)
+write.xlsx(E11, "E11 Panama Las Perlas.xlsx", sheetName = "Samples", col.names = TRUE, row.names = TRUE, showNA = FALSE)
 
 
 ```
