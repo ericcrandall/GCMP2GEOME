@@ -23,8 +23,11 @@ library(xlsx)
 ```{r}
 
 y_or_n <- function(x){
-  x == "y"
+  #if(is.na(x)){return(x)}
+  if(x == "y"){x = "TRUE"}
+  if(x == "n"){x = "FALSE"}
 }
+
 
 df <- read_tsv(file = "GCMP_EMP_map_r30_v1_Current.txt", na = c("","NA","na","Not Applicable", "Not applicable", "None", "Missing: Not collected", "Unknown"),
               col_types = cols(
@@ -81,7 +84,10 @@ Now you need to rename and/or convert any data into GEOME format
 Missing fields (left as comments for now but remember to remove the # sign when re-running the code): reef_type, relevant_collaborators, photosynthetically_active_radiation, shelf_location, visibility, visibility_method - completed: CH 05/07/2024
 
 ```{r}
-df_renamed <- df %>% rename(locationID = collection_id,
+df_renamed <- df %>% 
+  #https://stackoverflow.com/questions/38618943/use-dplyr-to-convert-all-variables-coded-as-y-n-to-true-false
+  mutate(across(select("boolean")))
+  rename(locationID = collection_id,
                           timeOfDay = collection_time,
                           decimalLatitude = latitude,
                           decimalLongitude = longitude,
@@ -164,9 +170,10 @@ df_renamed <- df %>% rename(locationID = collection_id,
                                                             "coral" ~ "PreservedSpecimen")) %>% 
                           mutate(tissueType = case_when(str_detect(tissueType,regex("Tissue",ignore_case = T)) ~ "Tissue",
                                                          str_detect(tissueType,regex("Skeleton",ignore_case = T)) ~ "Skeleton",
-                                                         str_detect(tissueType,regex("Mucus",ignore_case = T)) ~ "Mucus"))
+                                                         str_detect(tissueType,regex("Mucus",ignore_case = T)) ~ "Mucus")) %>% 
+                          mutate(sampleEnteredBy = "Colin Howe|Vivian Li|Eric Crandall")
 
-
+                          
 
 ```
 
