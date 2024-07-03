@@ -50,12 +50,8 @@ df <- read_tsv(file = "GCMP_EMP_map_r30_v1_Current.txt", na = c("","NA","na","No
                 Range.size = "n",
                 visibility = "n",
                 coral_contact_types = "c"
-              )) 
-          #this optionally changes all columns that start with "binary" to logical (T/F) instead of y/n
-          #mutate(across(starts_with("binary"), function(x){x == "y"}
-          #              )) 
-          # you may want to continue cleaning the data in this import pipeline statement, 
-          # like changing other y/n columns to logical  
+              ))
+          
   
 # Check column class
 # summary=sapply(df, class)
@@ -84,9 +80,25 @@ Now you need to rename and/or convert any data into GEOME format
 Missing fields (left as comments for now but remember to remove the # sign when re-running the code): reef_type, relevant_collaborators, photosynthetically_active_radiation, shelf_location, visibility, visibility_method - completed: CH 05/07/2024
 
 ```{r}
+# Create a character vector containing all the boolean columns.
+boolean = c('binary_tissue_loss',
+            'binary_disease',
+            'cyanobacteria_contact',
+            'cyanobacteria_overgrown',
+            'binary_turf_contact',
+            'turf_overgrown',
+            'binary_algal_contact',
+            'binary_macroalgal_contact',
+            'binary_CCA_contact',
+            'cca_overgrown',
+            'seagrass_contact',
+            'parrotfish_bites',
+            'coral_contact_types',
+            'sediment_contact')
+
 df_renamed <- df %>% 
-  #https://stackoverflow.com/questions/38618943/use-dplyr-to-convert-all-variables-coded-as-y-n-to-true-false
-  mutate(across(select("boolean")))
+  mutate_at(boolean, function(x){x == "y"}
+                        ) %>%
   rename(locationID = collection_id,
                           timeOfDay = collection_time,
                           decimalLatitude = latitude,
