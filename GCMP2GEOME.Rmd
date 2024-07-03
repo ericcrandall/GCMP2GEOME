@@ -183,7 +183,11 @@ df_renamed <- df %>%
                           mutate(tissueType = case_when(str_detect(tissueType,regex("Tissue",ignore_case = T)) ~ "Tissue",
                                                          str_detect(tissueType,regex("Skeleton",ignore_case = T)) ~ "Skeleton",
                                                          str_detect(tissueType,regex("Mucus",ignore_case = T)) ~ "Mucus")) %>% 
-                          mutate(sampleEnteredBy = "Colin Howe|Vivian Li|Eric Crandall")
+                          mutate(sampleEnteredBy = "Colin Howe|Vivian Li|Eric Crandall") %>% 
+                          mutate(institutionCode = case_match(institutionCode, " Penn State" ~ "PSU",
+                                                                                " KAUST" ~ "KAUST",
+                                                                                " AIMS" ~ "AIMS",
+                                                                                " OSU" ~ "OSU"))
 
                           
 
